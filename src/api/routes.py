@@ -181,6 +181,148 @@ def logout():
 
     return jsonify({"message":"successfully loggedout "})
 
+
+#API Product_______________________________
+#API Product_______________________________
+#API Product_______________________________
+
+@api.route('/product', methods=['GET'])
+def get_people():
+    people = People.query.all()  #<User Les>
+    people = list(map(lambda item: item.serialize(), people)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
+    print(people)
+  
+    #return jsonify(people), 200
+    Poeplebody = {
+        "msg": "Ok",
+        "people": people
+    }
+
+    return jsonify(Poeplebody)
+
+@api.route('/get-people/<int:id>', methods=['GET'])
+def get_specific_people(id):
+    people = People.query.get(id)    
+  
+    return jsonify(people.serialize()), 200
+
+
+@api.route('/post-peolpe', methods=['POST'])
+def post_specific_people():
+    body = request.get_json()   
+    id = body["id"]
+    name = body["name"]
+    gender = body["gender"]
+    eyes_color = body["eyes_color"]
+    height = body["height"]
+
+    if body is None:
+        raise APIException("You need to specify the request body as json object", status_code=404)
+    if "name" not in body:
+        raise APIException("You need to specify the name", status_code=404)
+    if "gender" not in body:
+        raise APIException("You need to specify the birthdate", status_code=404)
+    if "eyes_color" not in body:
+        raise APIException("You need to specify the eyes", status_code=404)
+    if "height" not in body:
+        raise APIException("You need to specify the height", status_code=404)
+
+    people = People.query.get(id)   
+    newCharacter = People(name=name, gender=gender, eyes_color=eyes_color, height=height)
+
+    db.session.add(newCharacter)
+    db.session.commit()
+
+    return jsonify(people.serialize()), 200
+
+@api.route('/delete-people', methods=['DELETE'])
+def delete_specific_people():
+    body = request.get_json()   
+    id = body["id"]
+
+    people = People.query.get(id) 
+
+    db.session.delete(people)
+    db.session.commit()  
+  
+    return jsonify("StartWars Character Deleted"), 200
+
+@api.route('/put-people', methods=['PUT'])
+def edit_People():
+    body = request.get_json()   
+    id = body["id"]
+    name = body["name"]
+    gender = body["gender"]
+    eyes_color = body["eyes_color"]
+    height = body["height"]
+
+    if body is None:
+        raise APIException("You need to specify the request body as json object", status_code=404)
+    if "name" not in body:
+        raise APIException("You need to specify the name", status_code=404)
+    if "gender" not in body:
+        raise APIException("You need to specify the birthdate", status_code=404)
+    if "eyes_color" not in body:
+        raise APIException("You need to specify the eyes", status_code=404)
+    if "height" not in body:
+        raise APIException("You need to specify the height", status_code=404)
+
+    people = People.query.get(id)   
+    people.name = name #modifique el nombre del usuario
+    people.gender = gender
+    people.eyes_color = eyes_color
+    people.height = height
+
+    db.session.commit()
+  
+    return jsonify(people.serialize()), 200
+
+
+@api.route('/favoritePeople', methods=['POST'])
+def add_favorite_pleope():
+    body = request.get_json()
+    user_id =["user_id"]
+    People_id = ["people_id"]
+
+    character = People.query.get(people_id)
+    if not character:
+        raise APIException('Character Not Found', status_code=404)
+    
+    user = User.query.get(user_id).first()
+    if not user:
+        raise APIException('User Not Found', status_code=404)
+
+    fav_exist = favoritePeople.query.filter_by(user_id = user.id, people_id = character.id).first() is not None
+
+    if fav_exist:
+        raise APIException('Favorite already exists ', status_code=404)
+    
+    favorite_people = favoritePeople(user_id = user.id, people_id = character.id)
+    db.session.add(favorite_people) #agregamos el nuevo usuario a la base de datos
+    db.session.commit()
+
+    return jsonify({
+        "people_name":favorite_people.serialize()["people_name"],
+        "user": favorite_people.serialize()["user_name"]
+    }), 200
+
+@api.route('/removefavoritepeople', methods=['DELETE'])
+def remove_favorite_people():
+    body = request.get_json()
+    user_id = body["user_id"]
+    people_id = body["people_id"]
+
+    favorite_people = FavoritePeople.query.filter_by(user_id=user_id, people_id=people_id).first()
+
+    if not favorite_people:
+        raise APIException('Favorite people not found', status_code=404)
+
+    db.session.delete(favorite_people)
+    db.session.commit()
+
+    return jsonify({"msg":"Favorite People removed "}), 200
+
+
 # ShoppingCart*************************
 # ShoppingCart*************************
 
