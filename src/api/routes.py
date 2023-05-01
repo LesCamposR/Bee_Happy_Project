@@ -17,7 +17,65 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+
 api = Blueprint('api', __name__)
+
+# Email*************************
+# Email*************************
+
+EMAIL = os.environ.get('EMAIL')
+PASSWORD = os.environ.get('PASSWORD')
+
+def sendEmail(message, to, subject):
+    smtp_address = 'smtpout.secureserver.net'
+    smtp_port = 465 #ssl
+
+    print(message, to, subject)
+
+    messageMime = MIMEMultipart('alternative') #json, #text, #application/pdf
+    messageMime['Subject'] = subject
+    messageMime['To'] = to
+    messageMime['From'] = EMAIL
+
+
+    html = ''' 
+    <html>
+    <body>
+    <h1> Thank You for visiting, '''  + to + '''  </h1>
+    <p>BeHapppy</p>
+    </br>
+    <p>Enjoy our products and everything this space has to offer</p>
+    </body>
+    </html>
+    '''
+    
+    #Crear elementos MIMEText
+    text_mime = MIMEText(subject, 'plain')
+    html_mime = MIMEText(html, 'html')
+
+    #adjuntar los MIMEText al MIMEMultipart
+    messageMime.attach(text_mime)
+    messageMime.attach(html_mime)
+
+    #conectarnos al puerto 465  para el enviar el correo
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
+        server.login(EMAIL, PASSWORD)
+        sever.sendmail(EMAIL, to, message.as_string())
+
+    return jsonify({"message":"email sent"}), 200
+
+@api.route('/email', methods=['POST'])
+def handle_email():
+    body = request.get_json()
+    message = body['message']
+    to = body['to']
+    subject = body['subject']
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -356,10 +414,6 @@ def protected():
     user = User.query.get(current_user)
     print("UserName:", user.name)
     return jsonify({"Msg":"This is a protected route"}), 200
-
-
-
-
 
 
 # this only runs if `$ python src/app.py` is executed
