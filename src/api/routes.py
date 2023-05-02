@@ -77,6 +77,8 @@ def handle_email():
     to = body['to']
     subject = body['subject']
 
+    sendEmail(message, to, subject)
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
