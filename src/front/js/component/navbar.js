@@ -5,7 +5,7 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light">
       <div className="container">
         <div>
           <Link to="/">
@@ -14,7 +14,7 @@ export const Navbar = () => {
           <Link to="/">
             <span className="navbar-brand mb-0 h1">Conocenos</span>
           </Link>
-          <Link to="/">
+          <Link to="/contact">
             <span className="navbar-brand mb-0 h1">Contacto</span>
           </Link>
           <Link to="/">
@@ -24,7 +24,7 @@ export const Navbar = () => {
 
         <div className="ml-auto">
           <Link to="/demo">
-            <button className="btn btn-primary">Iniciar Sesion</button>
+            <button className="btn">Iniciar Sesion</button>
           </Link>
         </div>
       </div>
