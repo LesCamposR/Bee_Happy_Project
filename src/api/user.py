@@ -18,10 +18,10 @@ class User(db.Model):
     email_recover = db.Column(db.String(120), unique=False, nullable=False)
     securityQA1 = db.Column(db.String(120), unique=False, nullable=False)
     securityQA2 = db.Column(db.String(120), unique=False, nullable=False)
-    user_creation_date = db.Column(db.date, unique=False, nullable=False)
+    user_creation_date = db.Column(db.Date, unique=False, nullable=False)
     role = db.Column(db.String(120), unique=False, nullable=False)
     status = db.Column(db.String(120), unique=False, nullable=False)
-    shopping_cart = db.relationship('shoppingcart ', backref = 'user', lazy= True )
+    #shopping_cart = db.relationship('shoppingcart')
     def __repr__(self):
         return f'<User {self.email}>'
 

@@ -5,7 +5,7 @@ import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db
 from api.user import User
-from api.product import Product
+from api.products import Product
 from api.shoppingcart import Shoppingcart
 from api.shoppinghistory import ShoppingHistory
 from api.order import Order
