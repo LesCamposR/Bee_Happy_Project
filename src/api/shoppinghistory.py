@@ -14,6 +14,10 @@ class ShoppingHistory(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "User_id": self.User_id,
+            "Order_id": self.Order_id,
+            "Products_id": self.Products_id,
+            "Invoice_number": self.Invoice_number,
+            "Status": self.Status,
             #
         }
