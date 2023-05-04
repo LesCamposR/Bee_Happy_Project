@@ -11,11 +11,16 @@ class Product(db.Model):
     Stock = db.Column(db.Integer, unique=False, nullable=False)
     order_id= db.relationship('Order', backref='product',lazy=True)
     def __repr__(self):
-        return f'<ClassProduct {self.email}>'
+        return f'<Product {self.email}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "Product_name": self.Product_name,
+            "price": self.price,
+            "Stock": self.Stock,
+            "Rating": self.Rating,
+            "Reviews": self.Reviews,
+            "Description": self.Description,
             # do not serialize the password, its a security breach
         }

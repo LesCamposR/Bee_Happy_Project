@@ -11,6 +11,8 @@ class Order(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "shoppingcart_id": self.shoppingcart_id,
+            "Products_id": self.Products_id,
+            "Order_Date": self.Order_Date,
             #
         }
