@@ -5,3 +5,11 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* esto hace que el contenedor cubra toda la pantalla vertical */
+  background-color: #61767b;
+}

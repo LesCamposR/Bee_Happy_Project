@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 import "../../styles/navbar.css";
 
-
-
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-light">
@@ -25,7 +23,7 @@ export const Navbar = () => {
         </div>
 
         <div className="ml-auto">
-          <Link to="/demo">
+          <Link to="/Login">
             <button className="btn border rounded-pill">Iniciar Sesion</button>
           </Link>
         </div>
