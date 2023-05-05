@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import axios from "axios";
 import "../../styles/home.css";
 
 export const RegisterForm = () => {
@@ -12,11 +13,24 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
-    console.log(
-      `Username: ${username},  Last Name: ${lastName}, Password: ${password}, Email: ${email}, Phone Number: ${phoneNumber}, Gender: ${gender}`
-    );
+    try {
+      const response = await axios.post("http://localhost:5000/register", {
+        username,
+        lastName,
+        email,
+        password,
+        birthday,
+        phoneNumber,
+        gender,
+      });
+      console.log(response.data);
+      // hacer algo después de que se haya registrado correctamente (por ejemplo, redirigir a otra página)
+    } catch (error) {
+      console.log(error);
+      // mostrar un mensaje de error al usuario
+    }
   };
 
   return (
@@ -24,7 +38,12 @@ export const RegisterForm = () => {
       <div className="row justify-content-center mt-4">
         <div className="register col-sm-4 rounded-3 m-5 p-3">
           <h3 className="row justify-content-center">Registration Form</h3>
-          <form onSubmit={handleSubmit}>
+          <form
+            id="registerForm"
+            action="/register"
+            method="POST"
+            onSubmit={{ handleRegistration }}
+          >
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
