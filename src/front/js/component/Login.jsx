@@ -28,7 +28,9 @@ export const Login = () => {
                 </div>
                 <br></br>
                 <button type="submit" className='loginb btn btn-outline-light btn-secondary px-5 '>Iniciar sesión</button>
-
+                <Link to="/">
+                    <button className="btn btn-outline-light btn-secondary px-5">Back home</button>
+                </Link>
             </form>
         </div>
 
