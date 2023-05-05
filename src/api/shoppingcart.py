@@ -13,6 +13,8 @@ class Shoppingcart(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "email": self.email,
+            "user_id": self.user_id,
+            "Products_status": self.Products_status,
+            "order_id": self.order_id,
             # do not serialize the password, its a security breach
         }
