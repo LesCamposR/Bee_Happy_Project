@@ -11,12 +11,13 @@ from api.shoppinghistory import ShoppingHistory
 from api.order import Order
 from api.utils import generate_sitemap, APIException
 
+
 from api.extensions import jwt, bcrypt
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
-
+from datetime import datetime, timezone, time
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -130,9 +131,10 @@ def register_user():
         raise APIException("You need to specify the email", status_code=400)
     #encriptamos el password en la base de datos
     password_encrypted = bcrypt.generate_password_hash(password, 10).decode('utf-8')
-
+    #datetim="1980-12-24"
+    datetim= datetime.now(timezone.utc)
     #creada la clase User en la variable new_user
-    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active)
+    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active, lastname="null", phonenumber="null", birthdate=datetim,address="null",country="null",last_login=datetim,email_recover="null",securityQA1="null",securityQA2="null",user_creation_date=datetim,role="null", status="active")
 
     #comitear la sesión
     db.session.add(new_user) #agregamos el nuevo usuario a la base de datos
@@ -203,7 +205,7 @@ def login():
     email = request.get_json()["email"]
     password = request.get_json()["password"]
 
-    userEmailLogin = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
 
     if user is None:
         return jsonify({"message":"Login failed"}), 401
@@ -229,7 +231,7 @@ def login():
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)
-    now = datetime.now(timezone.utc) 
+    #now = datetime.now(timezone.utc) 
 
     # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
@@ -247,34 +249,33 @@ def logout():
 #API Product_______________________________
 
 @api.route('/product', methods=['GET'])
-def get_people():
-    people = People.query.all()  #<User Les>
-    people = list(map(lambda item: item.serialize(), people)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
-    print(people)
+def get_product():
+    product = product.query.all()  #<User Les>
+    product = list(map(lambda item: item.serialize(), product)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
+    print(product)
   
-    #return jsonify(people), 200
-    Poeplebody = {
+    #return jsonify(product), 200
+    Productbody = {
         "msg": "Ok",
-        "people": people
+        "product": product
     }
 
-    return jsonify(Poeplebody)
+    return jsonify(Productbody)
 
-@api.route('/get-people/<int:id>', methods=['GET'])
-def get_specific_people(id):
-    people = People.query.get(id)    
+@api.route('/get-product/<int:id>', methods=['GET'])
+def get_specific_product(id):
+    product = product.query.get(id)    
   
-    return jsonify(people.serialize()), 200
+    return jsonify(product.serialize()), 200
 
 
-@api.route('/post-peolpe', methods=['POST'])
-def post_specific_people():
+@api.route('/post-product', methods=['POST'])
+def post_specific_product():
     body = request.get_json()   
     id = body["id"]
     name = body["name"]
-    gender = body["gender"]
-    eyes_color = body["eyes_color"]
-    height = body["height"]
+    price = body["price"]
+    
 
     if body is None:
         raise APIException("You need to specify the request body as json object", status_code=404)
@@ -287,28 +288,28 @@ def post_specific_people():
     if "height" not in body:
         raise APIException("You need to specify the height", status_code=404)
 
-    people = People.query.get(id)   
-    newCharacter = People(name=name, gender=gender, eyes_color=eyes_color, height=height)
+    product = product.query.get(id)   
+    newCharacter = product(name=name, gender=gender, eyes_color=eyes_color, height=height)
 
     db.session.add(newCharacter)
     db.session.commit()
 
-    return jsonify(people.serialize()), 200
+    return jsonify(product.serialize()), 200
 
-@api.route('/delete-people', methods=['DELETE'])
-def delete_specific_people():
+@api.route('/delete-product', methods=['DELETE'])
+def delete_specific_product():
     body = request.get_json()   
     id = body["id"]
 
-    people = People.query.get(id) 
+    product = product.query.get(id) 
 
-    db.session.delete(people)
+    db.session.delete(product)
     db.session.commit()  
   
     return jsonify("StartWars Character Deleted"), 200
 
-@api.route('/put-people', methods=['PUT'])
-def edit_People():
+@api.route('/put-product', methods=['PUT'])
+def edit_product():
     body = request.get_json()   
     id = body["id"]
     name = body["name"]
@@ -327,24 +328,24 @@ def edit_People():
     if "height" not in body:
         raise APIException("You need to specify the height", status_code=404)
 
-    people = People.query.get(id)   
-    people.name = name #modifique el nombre del usuario
-    people.gender = gender
-    people.eyes_color = eyes_color
-    people.height = height
+    product = product.query.get(id)   
+    product.name = name #modifique el nombre del usuario
+    product.gender = gender
+    product.eyes_color = eyes_color
+    product.height = height
 
     db.session.commit()
   
-    return jsonify(people.serialize()), 200
+    return jsonify(product.serialize()), 200
 
 
-@api.route('/favoritePeople', methods=['POST'])
+@api.route('/favoriteproduct', methods=['POST'])
 def add_favorite_pleope():
     body = request.get_json()
     user_id =["user_id"]
-    People_id = ["people_id"]
+    product_id = ["product_id"]
 
-    character = People.query.get(people_id)
+    character = product.query.get(product_id)
     if not character:
         raise APIException('Character Not Found', status_code=404)
     
@@ -352,35 +353,35 @@ def add_favorite_pleope():
     if not user:
         raise APIException('User Not Found', status_code=404)
 
-    fav_exist = favoritePeople.query.filter_by(user_id = user.id, people_id = character.id).first() is not None
+    fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
 
     if fav_exist:
         raise APIException('Favorite already exists ', status_code=404)
     
-    favorite_people = favoritePeople(user_id = user.id, people_id = character.id)
-    db.session.add(favorite_people) #agregamos el nuevo usuario a la base de datos
+    favorite_product = favoriteproduct(user_id = user.id, product_id = character.id)
+    db.session.add(favorite_product) #agregamos el nuevo usuario a la base de datos
     db.session.commit()
 
     return jsonify({
-        "people_name":favorite_people.serialize()["people_name"],
-        "user": favorite_people.serialize()["user_name"]
+        "product_name":favorite_product.serialize()["product_name"],
+        "user": favorite_product.serialize()["user_name"]
     }), 200
 
-@api.route('/removefavoritepeople', methods=['DELETE'])
-def remove_favorite_people():
+@api.route('/removefavoriteproduct', methods=['DELETE'])
+def remove_favorite_product():
     body = request.get_json()
     user_id = body["user_id"]
-    people_id = body["people_id"]
+    product_id = body["product_id"]
 
-    favorite_people = FavoritePeople.query.filter_by(user_id=user_id, people_id=people_id).first()
+    favorite_product = Favoriteproduct.query.filter_by(user_id=user_id, product_id=product_id).first()
 
-    if not favorite_people:
-        raise APIException('Favorite people not found', status_code=404)
+    if not favorite_product:
+        raise APIException('Favorite product not found', status_code=404)
 
-    db.session.delete(favorite_people)
+    db.session.delete(favorite_product)
     db.session.commit()
 
-    return jsonify({"msg":"Favorite People removed "}), 200
+    return jsonify({"msg":"Favorite product removed "}), 200
 
 
 # ShoppingCart*************************
@@ -393,14 +394,14 @@ def get_favorites(user_id):
     if not user:
         raise APIException('User not found', status_code=404)
 
-    favorite_people = list(map(lambda item: item.serialize()["people_name"], FavoritePeople.query.filter_by(user_id=user.id)))
+    favorite_product = list(map(lambda item: item.serialize()["product_name"], Favoriteproduct.query.filter_by(user_id=user.id)))
     favorite_planets = list(map(lambda item: item.serialize()["planet_name"], FavoritePlanets.query.filter_by(user_id=user.id)))
     favorite_vehicles = list(map(lambda item: item.serialize()["vehicle_name"], FavoriteVehicles.query.filter_by(user_id=user.id)))
 
     return jsonify({
         "msg":"ok",
-        "all_ShoppingCart": favorite_people + favorite_planets + favorite_vehicles,
-        "favorite_people": favorite_people,
+        "all_ShoppingCart": favorite_product + favorite_planets + favorite_vehicles,
+        "favorite_product": favorite_product,
         "favorite_planets": favorite_planets,
         "favorite_vehicles": favorite_vehicles
     }), 200
