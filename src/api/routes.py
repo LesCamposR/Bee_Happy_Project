@@ -244,6 +244,33 @@ def logout():
     return jsonify({"message":"successfully loggedout "})
 
 
+#ADD Product_______________________________
+#ADD Product_______________________________
+#ADD Product_______________________________
+
+
+@api.route('/addproduct', methods=['POST'])
+def add_product():
+    body = request.get_json()
+
+    product_name = body["product_name"]
+
+    #validaciones
+    if body is None:
+        raise APIException("You need to specify the request body as json object", status_code=400)
+    if "product" not in body:
+        raise APIException("You need to specify the email", status_code=400)
+
+    #define la nueva variable de Productos
+    new_product = product(Product_name=product_name,Price=price,Descripction=description,Rating=rating,Reviews=reviews,Stock=stock)
+ 
+    #comitear la sesión
+    db.session.add(new_product) #agregamos el nuevo producto a la base de datos
+    db.session.commit() #guardamos los cambios en la base de datos
+
+    return jsonify({"mensaje":"The New Product Add Correctly"}), 201
+
+
 #API Product_______________________________
 #API Product_______________________________
 #API Product_______________________________
@@ -253,7 +280,7 @@ def get_product():
     product = product.query.all()  #<User Les>
     product = list(map(lambda item: item.serialize(), product)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
     print(product)
-  
+    
     #return jsonify(product), 200
     Productbody = {
         "msg": "Ok",
