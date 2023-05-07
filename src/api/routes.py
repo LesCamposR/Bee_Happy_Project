@@ -249,26 +249,13 @@ def logout():
 #ADD Product_______________________________
 
 
-@api.route('/addproduct', methods=['POST'])
-def add_product():
-    body = request.get_json()
 
-    product_name = body["product_name"]
 
-    #validaciones
-    if body is None:
-        raise APIException("You need to specify the request body as json object", status_code=400)
-    if "product" not in body:
-        raise APIException("You need to specify the email", status_code=400)
+   
 
-    #define la nueva variable de Productos
-    new_product = product(Product_name=product_name,Price=price,Descripction=description,Rating=rating,Reviews=reviews,Stock=stock)
+   
  
-    #comitear la sesión
-    db.session.add(new_product) #agregamos el nuevo producto a la base de datos
-    db.session.commit() #guardamos los cambios en la base de datos
-
-    return jsonify({"mensaje":"The New Product Add Correctly"}), 201
+    
 
 
 #API Product_______________________________
@@ -277,14 +264,14 @@ def add_product():
 
 @api.route('/product', methods=['GET'])
 def get_product():
-    product = product.query.all()  #<User Les>
-    product = list(map(lambda item: item.serialize(), product)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
-    print(product)
+    products = Product.query.all()  #<User Les>
+    products = list(map(lambda item: item.serialize(), products)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
+    print(products)
     
     #return jsonify(product), 200
     Productbody = {
         "msg": "Ok",
-        "product": product
+        "product": products
     }
 
     return jsonify(Productbody)
@@ -299,75 +286,79 @@ def get_specific_product(id):
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
     body = request.get_json()   
-    id = body["id"]
-    name = body["name"]
-    price = body["price"]
-    
 
+    #id = body["id"]
+    Product_name = body["Product_name"]
+    Price = body["Price"]
+    Description = body["Description"]
+    Rating = body["Rating"]
+    Reviews = body["Reviews"]
+    Stock = body["Stock"] 
+     
+    #validaciones
     if body is None:
-        raise APIException("You need to specify the request body as json object", status_code=404)
-    if "name" not in body:
-        raise APIException("You need to specify the name", status_code=404)
-    if "gender" not in body:
-        raise APIException("You need to specify the birthdate", status_code=404)
-    if "eyes_color" not in body:
-        raise APIException("You need to specify the eyes", status_code=404)
-    if "height" not in body:
-        raise APIException("You need to specify the height", status_code=404)
+        raise APIException("You need to specify the request body as json object", status_code=400)
+    if "Product_name" not in body:
+        raise APIException("You need to specify the product", status_code=400)
 
-    product = product.query.get(id)   
-    newCharacter = product(name=name, gender=gender, eyes_color=eyes_color, height=height)
+    #define la nueva variable de Productos
+    #Products = Products.query.get(id)   
+    #define la nueva variable de Productos
+    new_product = Product(Product_name=Product_name, Price=Price, Description=Description, Rating=Rating, Reviews=Reviews, Stock=Stock)
 
-    db.session.add(newCharacter)
-    db.session.commit()
+   #comitar la sesión
+    db.session.add(new_product) #agregamos el nuevo producto a la base de datos
+    db.session.commit() #guardamos los cambios en la base de datos
 
-    return jsonify(product.serialize()), 200
+    return jsonify({"mensaje":"The New Product Add Correctly"}), 201
 
 @api.route('/delete-product', methods=['DELETE'])
 def delete_specific_product():
     body = request.get_json()   
     id = body["id"]
 
-    product = product.query.get(id) 
+    product = Product.query.get(id) 
 
     db.session.delete(product)
     db.session.commit()  
   
-    return jsonify("StartWars Character Deleted"), 200
+    return jsonify("Your Product was deleted Successfully"), 200
 
 @api.route('/put-product', methods=['PUT'])
 def edit_product():
     body = request.get_json()   
     id = body["id"]
-    name = body["name"]
-    gender = body["gender"]
-    eyes_color = body["eyes_color"]
-    height = body["height"]
+    Product_name = body["Product_name"]
+    Price = body["Price"]
+    Description = body["Description"]
+    Rating = body["Rating"]
+    Reviews = body["Reviews"]
+    Stock = body["Stock"] 
 
     if body is None:
         raise APIException("You need to specify the request body as json object", status_code=404)
-    if "name" not in body:
-        raise APIException("You need to specify the name", status_code=404)
-    if "gender" not in body:
-        raise APIException("You need to specify the birthdate", status_code=404)
-    if "eyes_color" not in body:
-        raise APIException("You need to specify the eyes", status_code=404)
-    if "height" not in body:
-        raise APIException("You need to specify the height", status_code=404)
-
-    product = product.query.get(id)   
-    product.name = name #modifique el nombre del usuario
-    product.gender = gender
-    product.eyes_color = eyes_color
-    product.height = height
+    if "id" not in body:
+        raise APIException("You need to specify the Product ID", status_code=404)
+    if "Product_name" not in body:
+        raise APIException("You need to specify the Product_name", status_code=404)
+   
+    product = Product.query.get(id)   
+    product.Product_name = Product_name #modifique el nombre del usuario
+    product.Price = Price
+    product.Description = Description
+    product.Rating = Rating
+    product.Reviews = Reviews
+    product.Stock = Stock
 
     db.session.commit()
   
     return jsonify(product.serialize()), 200
 
+# ShoppingCart*************************
+# ShoppingCart*************************
 
-@api.route('/favoriteproduct', methods=['POST'])
-def add_favorite_pleope():
+@api.route('/shoppingcart', methods=['POST'])
+def add_shopping_cart():
     body = request.get_json()
     user_id =["user_id"]
     product_id = ["product_id"]
@@ -378,7 +369,7 @@ def add_favorite_pleope():
     
     user = User.query.get(user_id).first()
     if not user:
-        raise APIException('User Not Found', status_code=404)
+        raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
     fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
 
@@ -409,29 +400,6 @@ def remove_favorite_product():
     db.session.commit()
 
     return jsonify({"msg":"Favorite product removed "}), 200
-
-
-# ShoppingCart*************************
-# ShoppingCart*************************
-
-@api.route('/ShoppingCart/<int:user_id>', methods=['GET'])
-@jwt_required()
-def get_favorites(user_id):
-    user = User.query.get(user_id)
-    if not user:
-        raise APIException('User not found', status_code=404)
-
-    favorite_product = list(map(lambda item: item.serialize()["product_name"], Favoriteproduct.query.filter_by(user_id=user.id)))
-    favorite_planets = list(map(lambda item: item.serialize()["planet_name"], FavoritePlanets.query.filter_by(user_id=user.id)))
-    favorite_vehicles = list(map(lambda item: item.serialize()["vehicle_name"], FavoriteVehicles.query.filter_by(user_id=user.id)))
-
-    return jsonify({
-        "msg":"ok",
-        "all_ShoppingCart": favorite_product + favorite_planets + favorite_vehicles,
-        "favorite_product": favorite_product,
-        "favorite_planets": favorite_planets,
-        "favorite_vehicles": favorite_vehicles
-    }), 200
 
 
 # Protect a route with jwt_required, which will kick out requests
