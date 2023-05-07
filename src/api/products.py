@@ -7,7 +7,7 @@ class Product(db.Model):
     Price = db.Column(db.Float, unique=False, nullable=False)
     Description = db.Column(db.String(200), unique=False, nullable=False)
     Rating = db.Column(db.Float, unique=False, nullable=False)
-    Reviews = db.Column(db.Integer, unique=False, nullable=False)
+    Reviews = db.Column(db.String, unique=False, nullable=False)
     Stock = db.Column(db.Integer, unique=False, nullable=False)
     order_id= db.relationship('Order', backref='product',lazy=True)
     def __repr__(self):
@@ -17,7 +17,7 @@ class Product(db.Model):
         return {
             "id": self.id,
             "Product_name": self.Product_name,
-            "price": self.price,
+            "Price": self.Price,
             "Stock": self.Stock,
             "Rating": self.Rating,
             "Reviews": self.Reviews,
