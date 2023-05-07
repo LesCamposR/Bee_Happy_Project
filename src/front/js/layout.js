@@ -10,33 +10,39 @@ import { Login } from "./component/Login.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
+import { ProductList } from "./component/productsList.jsx";
 
-//new components Bee Happy
-//import RegisterUser from "./component/registerUser.jsx";
-//import Contact from "./pages/contact.js";
-//<Route element={<Contact />} path="/contact" />
-//<Route element={<RegisterUser />} path="/registeruser" />
+// new components Bee Happy
+// import RegisterUser from "./component/registerUser.jsx";
+// import Contact from "./pages/contact.js";
+// <Route element={<Contact />} path="/contact" />
+// <Route element={<RegisterUser />} path="/registeruser" />
 
-//create your first component
+// create your first component
 const Layout = () => {
-  //the basename is used when your project is published in a subdirectory and not in the root of the domain
+  // the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
   return (
     <div>
+      {" "}
       <BrowserRouter basename={basename}>
+        {" "}
         <ScrollToTop>
-          <Navbar />
+          {" "}
+          <Navbar />{" "}
           <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<RegisterForm />} path="/registerForm" />
-            <Route element={<Login />} path="/Login" />
-            <Route element={<Single />} path="/single/:theid" />
-            <Route element={<h1> Not found! </h1>} />
+            {" "}
+            <Route element={<Home />} path="/" />{" "}
+            <Route element={<Demo />} path="/demo" />{" "}
+            <Route element={<RegisterForm />} path="/registerForm" />{" "}
+            <Route element={<ProductList />} path="/productsList" />{" "}
+            <Route element={<Login />} path="/Login" />{" "}
+            <Route element={<Single />} path="/single/:theid" />{" "}
+            <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
-          <Footer />
+          <Footer />{" "}
         </ScrollToTop>{" "}
       </BrowserRouter>{" "}
     </div>

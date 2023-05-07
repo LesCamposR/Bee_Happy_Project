@@ -13,26 +13,25 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleRegistration = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5000/register", {
-        username,
-        lastName,
-        email,
-        password,
-        birthday,
-        phoneNumber,
-        gender,
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    axios
+      .post("/api/register", {
+        email: formData.get("email"),
+        name: formData.get("name"),
+        password: formData.get("password"),
+        is_active: formData.get("is_active"),
+      })
+      .then((response) => {
+        console.log("User registered successfully");
+        // add any additional code to handle successful registration here
+      })
+      .catch((error) => {
+        console.log("Registration error:", error);
+        // add any additional code to handle errors here
       });
-      console.log(response.data);
-      // hacer algo después de que se haya registrado correctamente (por ejemplo, redirigir a otra página)
-    } catch (error) {
-      console.log(error);
-      // mostrar un mensaje de error al usuario
-    }
   };
-
   return (
     <div className="background-image">
       <div className="row justify-content-center mt-4">
@@ -42,7 +41,7 @@ export const RegisterForm = () => {
             id="registerForm"
             action="/register"
             method="POST"
-            onSubmit={{ handleRegistration }}
+            onSubmit={handleSubmit}
           >
             <div className="row mb-3">
               <div className="col-md-6">
@@ -111,23 +110,22 @@ export const RegisterForm = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
-            <div className="d-flex justify-content-start">
-              <div>
-                <label className="form-label" htmlFor="birthday">
-                  Birthday:
+            <div className="form-group row mb-3">
+              <div className="col-sm-6">
+                <label htmlFor="birthday" className="form-label">
+                  Birthday
                 </label>
                 <input
                   type="date"
                   className="form-control"
-                  id="username"
+                  id="birthday"
                   value={birthday}
                   onChange={(e) => setBirthday(e.target.value)}
                 />
               </div>
-
-              <div className="ms-4">
-                <label className="form-label" htmlFor="gender">
-                  Gender:
+              <div className="col-sm-6">
+                <label htmlFor="gender" className="form-label">
+                  Gender
                 </label>
                 <select
                   id="gender"
