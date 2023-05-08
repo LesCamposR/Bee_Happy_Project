@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import axios from "axios";
 import "../../styles/home.css";
 
 export const RegisterForm = () => {
@@ -16,22 +15,35 @@ export const RegisterForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    axios
-      .post("/api/register", {
-        email: formData.get("email"),
-        name: formData.get("name"),
-        password: formData.get("password"),
-        is_active: formData.get("is_active"),
-      })
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "example@email.com",
+        name: "John Doe",
+        password: "mypassword",
+        is_active: true,
+      }),
+    };
+
+    fetch(
+      "https://3001-lescamposr-beehappyproj-xmd9yqyicju.ws-us96b.gitpod.io/register",
+      requestOptions
+    )
       .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
         console.log("User registered successfully");
-        // add any additional code to handle successful registration here
       })
       .catch((error) => {
         console.log("Registration error:", error);
-        // add any additional code to handle errors here
       });
   };
+
   return (
     <div className="background-image">
       <div className="row justify-content-center mt-4">
@@ -110,6 +122,7 @@ export const RegisterForm = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
+
             <div className="form-group row mb-3">
               <div className="col-sm-6">
                 <label htmlFor="birthday" className="form-label">
