@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from .db import db
-#from .user import User
+from .user import User
+from .products import Product
 
 class Shoppingcart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
