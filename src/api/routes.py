@@ -272,29 +272,27 @@ def get_specific_product(id):
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
     body = request.get_json()   
-    id = body["id"]
     name = body["name"]
     price = body["price"]
+    description = body["description"]
+    rating = body["rating"]
+    reviews = body["reviews"]
+    stock= body["stock"]
     
 
     if body is None:
         raise APIException("You need to specify the request body as json object", status_code=404)
     if "name" not in body:
         raise APIException("You need to specify the name", status_code=404)
-    if "gender" not in body:
-        raise APIException("You need to specify the birthdate", status_code=404)
-    if "eyes_color" not in body:
-        raise APIException("You need to specify the eyes", status_code=404)
-    if "height" not in body:
-        raise APIException("You need to specify the height", status_code=404)
+    
 
-    product = product.query.get(id)   
-    newCharacter = product(name=name, gender=gender, eyes_color=eyes_color, height=height)
+  
+    newproduct = Product(name=name, price=price, stock=stock, rating=rating, reviews=reviews, description=description )
 
-    db.session.add(newCharacter)
+    db.session.add(newproduct)
     db.session.commit()
 
-    return jsonify(product.serialize()), 200
+    return jsonify({"mensaje":"Product creado correctamente"}), 201
 
 @api.route('/delete-product', methods=['DELETE'])
 def delete_specific_product():
@@ -339,31 +337,31 @@ def edit_product():
     return jsonify(product.serialize()), 200
 
 
-@api.route('/favoriteproduct', methods=['POST'])
-def add_favorite_pleope():
+@api.route('/shoppincart', methods=['POST'])
+def add_shoppingcart():
     body = request.get_json()
-    user_id =["user_id"]
-    product_id = ["product_id"]
+    user_id =body["user_id"]
+    product_id = body["product_id"]
 
-    character = product.query.get(product_id)
-    if not character:
+    product = Product.query.get(product_id)
+    if not product:
         raise APIException('Character Not Found', status_code=404)
     
-    user = User.query.get(user_id).first()
+    user = User.query.get(user_id)
     if not user:
         raise APIException('User Not Found', status_code=404)
 
-    fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
+    #fav_exist = Shoppingcart.query.filter_by(user_id=user.id, product_id=product.id).first() is not None
 
-    if fav_exist:
-        raise APIException('Favorite already exists ', status_code=404)
+   # if fav_exist:
+      #  raise APIException('Favorite already exists ', status_code=404)
     
-    favorite_product = favoriteproduct(user_id = user.id, product_id = character.id)
-    db.session.add(favorite_product) #agregamos el nuevo usuario a la base de datos
+    favorite_product = Shoppingcart(user_id=user.id, product_id=product.id)
+    db.session.add(favorite_product) 
     db.session.commit()
 
     return jsonify({
-        "product_name":favorite_product.serialize()["product_name"],
+        "product":favorite_product.serialize()["product_name"],
         "user": favorite_product.serialize()["user_name"]
     }), 200
 
