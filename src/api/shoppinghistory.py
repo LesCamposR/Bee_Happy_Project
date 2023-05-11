@@ -9,7 +9,7 @@ class ShoppingHistory(db.Model):
     invoice_number = db.Column(db.Float, unique=False, nullable=False)
     status = db.Column(db.String(120), unique=True, nullable=False)
     def __repr__(self):
-        return f'<ShoppingHistory {self.email}>'
+        return f'<ShoppingHistory {self.id}>'
 
     def serialize(self):
         return {
