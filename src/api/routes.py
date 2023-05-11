@@ -337,7 +337,7 @@ def edit_product():
     return jsonify(product.serialize()), 200
 
 
-@api.route('/shoppincart', methods=['POST'])
+@api.route('/shoppingcart', methods=['POST'])
 def add_shoppingcart():
     body = request.get_json()
     user_id =body["user_id"]
@@ -345,7 +345,7 @@ def add_shoppingcart():
 
     product = Product.query.get(product_id)
     if not product:
-        raise APIException('Character Not Found', status_code=404)
+        raise APIException('Product Not Found', status_code=404)
     
     user = User.query.get(user_id)
     if not user:
@@ -371,7 +371,7 @@ def remove_favorite_product():
     user_id = body["user_id"]
     product_id = body["product_id"]
 
-    favorite_product = Favoriteproduct.query.filter_by(user_id=user_id, product_id=product_id).first()
+    favorite_product = Shoppingcart.query.filter_by(user_id=user_id, product_id=product_id).first()
 
     if not favorite_product:
         raise APIException('Favorite product not found', status_code=404)
@@ -385,23 +385,38 @@ def remove_favorite_product():
 # ShoppingCart*************************
 # ShoppingCart*************************
 
-@api.route('/ShoppingCart/<int:user_id>', methods=['GET'])
+@api.route('/shoppingcart/<int:user_id>', methods=['GET'])
 @jwt_required()
 def get_favorites(user_id):
     user = User.query.get(user_id)
     if not user:
         raise APIException('User not found', status_code=404)
 
-    favorite_product = list(map(lambda item: item.serialize()["product_name"], Favoriteproduct.query.filter_by(user_id=user.id)))
-    favorite_planets = list(map(lambda item: item.serialize()["planet_name"], FavoritePlanets.query.filter_by(user_id=user.id)))
-    favorite_vehicles = list(map(lambda item: item.serialize()["vehicle_name"], FavoriteVehicles.query.filter_by(user_id=user.id)))
+    favorite_product = list(map(lambda item: item.serialize()["product_name"], Shoppingcart.query.filter_by(user_id=user.id)))
 
     return jsonify({
         "msg":"ok",
-        "all_ShoppingCart": favorite_product + favorite_planets + favorite_vehicles,
         "favorite_product": favorite_product,
-        "favorite_planets": favorite_planets,
-        "favorite_vehicles": favorite_vehicles
+       
+    }), 200
+
+@api.route('/favorites', methods=['POST'])
+def get_favorites_with_post():
+    body = request.get_json()
+    user_id = body["user_id"]
+
+    if user_id is None:
+        raise APIException("You need to specify the user_id as a query parameter", status_code=400)
+
+    user = User.query.get(user_id)
+    if not user:
+        raise APIException('User not found', status_code=404)
+
+    favorite_product = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user.id)))
+   
+    return jsonify({
+        "msg":"ok",
+        "all_favorites": favorite_product,
     }), 200
 
 
