@@ -244,20 +244,6 @@ def logout():
     return jsonify({"message":"successfully loggedout "})
 
 
-#ADD Product_______________________________
-#ADD Product_______________________________
-#ADD Product_______________________________
-
-
-
-
-   
-
-   
- 
-    
-
-
 #API Product_______________________________
 #API Product_______________________________
 #API Product_______________________________
@@ -360,30 +346,35 @@ def edit_product():
 @api.route('/shoppingcart', methods=['POST'])
 def add_shopping_cart():
     body = request.get_json()
-    user_id =["user_id"]
-    product_id = ["product_id"]
+    user_id = body["user_id"]
+    product_id = body["product_id"]
 
-    character = product.query.get(product_id)
-    if not character:
-        raise APIException('Character Not Found', status_code=404)
+    if body is None:
+        raise APIException("You need to specify the request body as json object", status_code=404)
     
-    user = User.query.get(user_id).first()
+    user = User.query.get(user_id)
+    
     if not user:
         raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
-    fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
+    
+    product = Product.query.get(product_id)
+    
+    selected_product = Shoppingcart(user_id=user_id, product_id=product_id)
 
-    if fav_exist:
+    fav_product = Shoppingcart.query.filter_by(user_id = user.id, product_id=product_id).first() is not None
+    
+    if fav_product:
         raise APIException('Favorite already exists ', status_code=404)
     
-    favorite_product = favoriteproduct(user_id = user.id, product_id = character.id)
-    db.session.add(favorite_product) #agregamos el nuevo usuario a la base de datos
+    db.session.add(selected_product) #agregamos el Shopping Card a la base de datos
     db.session.commit()
 
     return jsonify({
-        "product_name":favorite_product.serialize()["product_name"],
-        "user": favorite_product.serialize()["user_name"]
+        "product_name":Shoppingcart.serialize()["product_name"],
+        "user_name": Shoppingcart.serialize()["user_name"]
     }), 200
+    
 
 @api.route('/removefavoriteproduct', methods=['DELETE'])
 def remove_favorite_product():
@@ -400,6 +391,14 @@ def remove_favorite_product():
     db.session.commit()
 
     return jsonify({"msg":"Favorite product removed "}), 200
+
+
+@api.route('/get-shoppingcart', methods=['GET'])
+def get_cart_id(id):
+    body = request.get_json()
+    Shoppingcart = Shoppingcart.query.get(id)    
+  
+    return jsonify(Shoppingcart.serialize()), 200
 
 
 # Protect a route with jwt_required, which will kick out requests

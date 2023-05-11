@@ -5,8 +5,8 @@ from .db import db
 class Shoppingcart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable= False)
-    Products_status = db.Column(db.String(120), unique=True, nullable=False)
-    Products_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable= False)
+    
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable= False)
     order_id = db.relationship('Order', backref='shoppingcart', lazy=True)
     def __repr__(self):
         return f'<Shoppingcart {self.email}>'
@@ -15,7 +15,9 @@ class Shoppingcart(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "Products_status": self.Products_status,
+            "user_name": User.query.get(self.user_id).serialize()["name"],
+            "product_id": self.product_id,
+            "product_name": Product.query.get(self.product_id).serialize()["Product_name"],
             "order_id": self.order_id,
             # do not serialize the password, its a security breach
         }

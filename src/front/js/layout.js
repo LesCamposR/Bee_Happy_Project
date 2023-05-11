@@ -13,8 +13,8 @@ import { RegisterForm } from "./component/registerForm.jsx";
 
 //new components Bee Happy
 //import RegisterUser from "./component/registerUser.jsx";
-//import Contact from "./pages/contact.js";
-//<Route element={<Contact />} path="/contact" />
+import Contact from "./pages/contact.js";
+
 //<Route element={<RegisterUser />} path="/registeruser" />
 
 //create your first component
@@ -32,6 +32,7 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />
             <Route element={<RegisterForm />} path="/registerForm" />
+            <Route element={<Contact />} path="/contact" />
             <Route element={<Login />} path="/Login" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1> Not found! </h1>} />
