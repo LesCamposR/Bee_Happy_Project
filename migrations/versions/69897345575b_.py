@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/accce0107470_.py
-Revision ID: accce0107470
+Revision ID: 69897345575b
 Revises: 
-Create Date: 2023-05-11 01:37:59.900069
-========
-Revision ID: 8d2f89b972f9
-Revises: 
-Create Date: 2023-05-11 03:07:24.063758
->>>>>>>> Alonso:migrations/versions/8d2f89b972f9_.py
+Create Date: 2023-05-11 04:43:21.595817
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/accce0107470_.py
-revision = 'accce0107470'
-========
-revision = '8d2f89b972f9'
->>>>>>>> Alonso:migrations/versions/8d2f89b972f9_.py
+revision = '69897345575b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,7 +24,7 @@ def upgrade():
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('description', sa.String(length=200), nullable=False),
     sa.Column('rating', sa.Float(), nullable=False),
-    sa.Column('reviews', sa.Integer(), nullable=False),
+    sa.Column('reviews', sa.String(length=200), nullable=False),
     sa.Column('stock', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')

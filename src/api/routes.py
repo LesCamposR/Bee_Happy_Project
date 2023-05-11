@@ -354,7 +354,7 @@ def add_shoppingcart():
     if not user:
         raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
-     favorite_product = Shoppingcart(user_id=user.id, product_id=product.id)
+    favorite_product = Shoppingcart(user_id=user.id, product_id=product.id)
     db.session.add(favorite_product) 
     db.session.commit()
 
