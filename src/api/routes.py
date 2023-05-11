@@ -268,11 +268,12 @@ def get_specific_product(id):
   
     return jsonify(product.serialize()), 200
 
+    
 
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
     body = request.get_json()   
-    id = body["id"]
+    
     name = body["name"]
     price = body["price"]
     
