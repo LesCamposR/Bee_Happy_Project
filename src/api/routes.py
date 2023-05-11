@@ -272,31 +272,29 @@ def get_specific_product(id):
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
     body = request.get_json()   
+    id = body["id"]
+    name = body["name"]
+    price = body["price"]
+    
 
-    #id = body["id"]
-    Product_name = body["Product_name"]
-    Price = body["Price"]
-    Description = body["Description"]
-    Rating = body["Rating"]
-    Reviews = body["Reviews"]
-    Stock = body["Stock"] 
-     
-    #validaciones
     if body is None:
-        raise APIException("You need to specify the request body as json object", status_code=400)
-    if "Product_name" not in body:
-        raise APIException("You need to specify the product", status_code=400)
+        raise APIException("You need to specify the request body as json object", status_code=404)
+    if "name" not in body:
+        raise APIException("You need to specify the name", status_code=404)
+    if "gender" not in body:
+        raise APIException("You need to specify the birthdate", status_code=404)
+    if "eyes_color" not in body:
+        raise APIException("You need to specify the eyes", status_code=404)
+    if "height" not in body:
+        raise APIException("You need to specify the height", status_code=404)
 
-    #define la nueva variable de Productos
-    #Products = Products.query.get(id)   
-    #define la nueva variable de Productos
-    new_product = Product(Product_name=Product_name, Price=Price, Description=Description, Rating=Rating, Reviews=Reviews, Stock=Stock)
+    product = product.query.get(id)   
+    newCharacter = product(name=name, gender=gender, eyes_color=eyes_color, height=height)
 
-   #comitar la sesión
-    db.session.add(new_product) #agregamos el nuevo producto a la base de datos
-    db.session.commit() #guardamos los cambios en la base de datos
+    db.session.add(newCharacter)
+    db.session.commit()
 
-    return jsonify({"mensaje":"The New Product Add Correctly"}), 201
+    return jsonify(product.serialize()), 200
 
 @api.route('/delete-product', methods=['DELETE'])
 def delete_specific_product():
@@ -343,36 +341,32 @@ def edit_product():
 # ShoppingCart*************************
 # ShoppingCart*************************
 
-@api.route('/shoppingcart', methods=['POST'])
-def add_shopping_cart():
+@api.route('/favoriteproduct', methods=['POST'])
+def add_favorite_pleope():
     body = request.get_json()
-    user_id = body["user_id"]
-    product_id = body["product_id"]
+    user_id =["user_id"]
+    product_id = ["product_id"]
 
-    if body is None:
-        raise APIException("You need to specify the request body as json object", status_code=404)
+    character = product.query.get(product_id)
+    if not character:
+        raise APIException('Character Not Found', status_code=404)
     
-    user = User.query.get(user_id)
-    
+    user = User.query.get(user_id).first()
     if not user:
         raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
-    
-    product = Product.query.get(product_id)
-    
-    selected_product = Shoppingcart(user_id=user_id, product_id=product_id)
+    fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
 
-    fav_product = Shoppingcart.query.filter_by(user_id = user.id, product_id=product_id).first() is not None
-    
-    if fav_product:
+    if fav_exist:
         raise APIException('Favorite already exists ', status_code=404)
     
-    db.session.add(selected_product) #agregamos el Shopping Card a la base de datos
+    favorite_product = favoriteproduct(user_id = user.id, product_id = character.id)
+    db.session.add(favorite_product) #agregamos el nuevo usuario a la base de datos
     db.session.commit()
 
     return jsonify({
-        "product_name":Shoppingcart.serialize()["product_name"],
-        "user_name": Shoppingcart.serialize()["user_name"]
+        "product_name":favorite_product.serialize()["product_name"],
+        "user": favorite_product.serialize()["user_name"]
     }), 200
     
 
