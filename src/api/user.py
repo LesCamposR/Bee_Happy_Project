@@ -20,9 +20,10 @@ class User(db.Model):
     user_creation_date = db.Column(db.Date, unique=False, nullable=False)
     role = db.Column(db.String(120), unique=False, nullable=False)
     status = db.Column(db.String(120), unique=False, nullable=False)
+    order_id = db.relationship('Order', backref='user', lazy=True)
     #shopping_cart = db.relationship('shoppingcart')
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.name}>'
 
     def serialize(self):
         return {

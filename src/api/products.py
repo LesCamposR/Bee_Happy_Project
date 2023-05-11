@@ -16,7 +16,7 @@ class Product(db.Model):
     stock = db.Column(db.Integer, unique=False, nullable=False)
     order_id= db.relationship('Order', backref='product',lazy=True)
     def __repr__(self):
-        return f'<Product {self.email}>'
+        return f'<Product {self.name}>'
 
     def serialize(self):
         return {
