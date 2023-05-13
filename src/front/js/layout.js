@@ -13,7 +13,7 @@ import { RegisterForm } from "./component/registerForm.jsx";
 
 //new components Bee Happy
 //import RegisterUser from "./component/registerUser.jsx";
-import Contact from "./pages/contact.js";
+import Contact from "./pages/contactForm.js";
 
 //<Route element={<RegisterUser />} path="/registeruser" />
 
