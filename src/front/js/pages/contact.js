@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Contact = () => {
+export const Contact = () => {
 
   const [message, setMessage] = useState("");
 
@@ -53,5 +53,3 @@ const Contact = () => {
     </div>
   );
 };
-
-export default Contact;

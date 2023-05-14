@@ -2,12 +2,19 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-const ProductCard = () => {
+export const ProductCard = ({ product }) => {
+  console.log(product.title);
 
-    return (<>
+  useEffect(() => {
+    //const data =
+  }, []);
 
-        Soy el componente ProductCard
+  return (
+    <>
+      console.log(product)
+      <h1>{product.title}</h1>
+      Soy el componente ProductCard
+    </>
+  );
+};
 
-    </>)
-}
-export default ProductCard

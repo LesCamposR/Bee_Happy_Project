@@ -421,8 +421,9 @@ def get_favorites_with_post():
         "all_favorites": favorite_product,
     }), 200
 
-@api.route('/order', methods=['POST'])
 
+
+@api.route('/order', methods=['POST'])
 def get_order_with_post():
     body = request.get_json()
     user_id = body["user_id"]
@@ -439,7 +440,7 @@ def get_order_with_post():
     return jsonify({
         "msg":"ok",
         "get_order": order,
-    }), 200
+    }), 200  
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.

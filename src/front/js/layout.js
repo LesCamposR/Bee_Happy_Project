@@ -4,19 +4,19 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
+import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 import { Login } from "./component/Login.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
-import Contact from "./pages/contact";
+import { ProductCard } from "./component/productCard.jsx"
+import { Contact } from "./pages/contact";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
 // import Contact from "./pages/contact.js";
-// <Route element={<Contact />} path="/contact" />
-// <Route element={<RegisterUser />} path="/registeruser" />
 
 // create your first component
 const Layout = () => {
@@ -38,6 +38,7 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />{" "}
             <Route element={<RegisterForm />} path="/registerForm" />{" "}
             <Route element={<ProductList />} path="/productsList" />{" "}
+            <Route element={<ProductCard />} path="/productsCard" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
