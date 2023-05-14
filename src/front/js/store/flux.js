@@ -12,8 +12,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
+	  
+		getMessage: () => {
+		  // function body
+		  console.log("Get Messaged")
+		},	 
+	  
 
-      ...userActions(getStore, getActions, setStore),
+       ...userActions(getStore, getActions, setStore),
 
       useFetch: async (endpoint, body, method = "GET") => {
         let url = process.env.BACKEND_URL + endpoint;

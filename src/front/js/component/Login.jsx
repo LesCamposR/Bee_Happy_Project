@@ -7,10 +7,12 @@ export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
     // Aquí podrías agregar código para verificar las credenciales
-    //let { respuestaJson, response } = await actions.login(email, password); // call login action
+    let { respuestaJson, response } = await actions.login(email, password); // call login action
     console.log(response);
     if (response.ok) {
       actions.initialFetchUsersData();
