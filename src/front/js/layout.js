@@ -11,6 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
+import Contact from "./pages/contact";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
@@ -39,6 +40,7 @@ const Layout = () => {
             <Route element={<RegisterForm />} path="/registerForm" />{" "}
             <Route element={<ProductList />} path="/productsList" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
+            <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}

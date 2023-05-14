@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Carousel, Card } from "react-bootstrap";
 import "../../styles/home.css";
+import ProductCard from "./productCard.jsx"
 
 const products = [
   {
@@ -27,10 +28,11 @@ export const ProductList = () => {
 
   const handleDetails = () => {
     // Ir al otro componente card individual
+
     console.log("Mostrando detalles del producto seleccionado");
   };
 
-  return (
+  return (<>
     <Carousel activeIndex={index} onSelect={setIndex}>
       {products.map((product, idx) => (
         <Carousel.Item key={idx}>
@@ -54,5 +56,6 @@ export const ProductList = () => {
         </Carousel.Item>
       ))}
     </Carousel>
-  );
+    < ProductCard />
+  </>);
 };
