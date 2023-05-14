@@ -16,6 +16,11 @@ const Login = () => {
     console.log(password);
   }, [password]);
 
+  function MyComponent({ actions }) {
+    const handleLogin = () => {
+      actions.login(username, password);
+    };
+
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
       <form className="border rounded p-5">
