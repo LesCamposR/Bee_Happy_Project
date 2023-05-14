@@ -1,24 +1,24 @@
 export const userStore = {
   listaUsuarios: [],
-  usuario: {
+  user: {
     msg: "I'm an object",
   },
 };
 
 export function userActions(getStore, getActions, setStore) {
   return {
-    login: async () => {
+    login: async (email, password) => {
       const store = getStore();
       console.log("Es la encargada de hacer login del usuario");
 
       setStore({
         ...store,
-        usuario: {
+        user: {
           msg: "Usuario logueado",
         },
       });
 
-      return store.usuario;
+      return store.user;
     },
   };
 }

@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+//import { userActions } from "../store/user";
 
 export const Login = () => {
-  const [username, setUsername] = useState("");
+  const [store, actions] = useState(Context);
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
+  useEffect(() => {
+    console.log(password);
+  }, [password]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     // Aquí podrías agregar código para verificar las credenciales
     let { respuestaJson, response } = await actions.login(email, password); // call login action
     console.log(response);
     if (response.ok) {
       actions.initialFetchUsersData();
       actions.getUserFavorites();
-      navigate("/"); // redirect to home component
+      // navigate("/"); // redirect to home component
     } else {
       alert("Login failed");
     }
@@ -37,8 +46,8 @@ export const Login = () => {
             className="form-control"
             id="username"
             name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -54,8 +63,11 @@ export const Login = () => {
         </div>
         <br></br>
         <button
-          type="submit"
+          type="button"
           className="loginb btn btn-outline-light btn-secondary px-5 "
+          onClick={(e) => {
+            actions.login(email, password);
+          }}
         >
           Iniciar sesión
         </button>
