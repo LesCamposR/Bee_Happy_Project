@@ -23,8 +23,13 @@ const products = [
   },
 ];
 
+
 export const ProductList = () => {
+  
   const [index, setIndex] = useState(0);
+  const [product, setProduct] = useState(product);
+
+  
 
   const handleDetails = () => {
     // Ir al otro componente card individual
