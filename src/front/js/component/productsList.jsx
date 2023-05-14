@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Carousel, Card } from "react-bootstrap";
 import "../../styles/home.css";
-import ProductCard from "./productCard.jsx";
+import ProductCard from "./productCard.jsx"
 
 const products = [
   {
@@ -37,32 +37,30 @@ export const ProductList = () => {
     console.log("Mostrando detalles del producto seleccionado");
   };
 
-  return (
-    <>
-      <Carousel activeIndex={index} onSelect={setIndex}>
-        {products.map((product, idx) => (
-          <Carousel.Item key={idx}>
-            <img
-              className="d-block w-100 carousel-image"
-              src={product.image}
-              alt={product.title}
-            />
-            <Carousel.Caption className="text-center">
-              <h3 className="mt-3 mb-2">{product.title}</h3>
-              <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-                {product.text}
-              </p>
-              <button
-                className=" btn btn-outline-dark btn-lg"
-                onClick={handleDetails}
-              >
-                Detalles
-              </button>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      <ProductCard />
-    </>
-  );
+  return (<>
+    <Carousel activeIndex={index} onSelect={setIndex}>
+      {products.map((product, idx) => (
+        <Carousel.Item key={idx}>
+          <img
+            className="d-block w-100 carousel-image"
+            src={product.image}
+            alt={product.title}
+          />
+          <Carousel.Caption className="text-center">
+            <h3 className="mt-3 mb-2">{product.title}</h3>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              {product.text}
+            </p>
+            <button
+              className=" btn btn-outline-dark btn-lg"
+              onClick={handleDetails}
+            >
+              Detalles
+            </button>
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+    < ProductCard />
+  </>);
 };
