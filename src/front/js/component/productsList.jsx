@@ -46,16 +46,12 @@ export const ProductList = () => {
             <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
               {product.text}
             </p>
-            <button
-              className=" btn btn-outline-dark btn-lg"
-              onClick={handleDetails}
-            >
-              Detalles
-            </button>
+            <Link to="/productCard" className=" btn btn-outline-dark btn-lg">Detalles!
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
       ))}
-    </Carousel>
-    < ProductCard />
+    </Carousel >
+
   </>);
 };
