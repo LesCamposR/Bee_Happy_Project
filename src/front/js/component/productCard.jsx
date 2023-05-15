@@ -9,7 +9,9 @@ import Logo from "../../img/Logo.png";
 const ProductCard = () => {
 
     return (<>
-
+        <div class="alert alert-warning" role="alert">
+            A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        </div>
         <div className="h-100 bg-light">
             <div className="row">
 
