@@ -17,7 +17,7 @@ class Order(db.Model):
             "user_id": self.user_id,
             "product_id": self.products_id,
             "order_Date": self.order_Date,
-            "product_name": Product.query.get(self.products_id).serialize()["name"],
+            "product_name": Product.query.get(self.products_id).serialize()["name"],                             
             "user_name": User.query.get(self.user_id).serialize()["name"],
             "user":User.query.get(self.user_id).serialize(),
             "product":Product.query.get(self.products_id).serialize()
