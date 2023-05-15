@@ -11,6 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
+import Us from "./component/Us.jsx";
 import Contact from "./pages/contact";
 import ProductCard from "./component/productCard.jsx";
 
@@ -42,6 +43,7 @@ const Layout = () => {
             <Route element={<ProductList />} path="/productsList" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
+            <Route element={<Us />} path="/Us" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
