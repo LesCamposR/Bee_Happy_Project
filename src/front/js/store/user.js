@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-
 export const userStore = {
   listaUsuarios: [],
   user: {
     msg: "I'm an object",
   },
+  user: "",
+  userLogin: false
 };
 
 export function userActions(getStore, getActions, setStore) {
@@ -19,12 +19,27 @@ export function userActions(getStore, getActions, setStore) {
       };
 
       let { respuestaJson, response } = await actions.useFetch(
-        "/login",
+        "/api/login",
         obj,
         "POST"
       );
-      console.log(respuestaJson);
+     // console.log(respuestaJson);
       console.log(response.ok);
+
+      if (response.ok) {
+        localStorage.setItem("token", respuestaJson.token)
+        sessionStorage.setItem("token", respuestaJson.token)
+        let token = localStorage.getItem("token")
+        setStore({ ...store, userLogin: true })
+        console.log("Login is: True ")
+        //console.log("token", token)
+    } else {
+        console.log("login fallido")
+        localStorage.setItem("token", "")
+        sessionStorage.setItem("token", "")
+        setStore({ ...store, userLogin: false })
+    }
+
       /*setStore({
         ...store,
         user: {

@@ -1,25 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { userActions } from "../store/user";
 
-const Login = () => {
-  const [store, actions] = useState(Context);
-  //const [def, funciones] = useContext(userActions)
+
+export const Login = () => {
+  const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     console.log(email);
   }, [email]);
-  useEffect(() => {
+  /*useEffect(() => {
     console.log(password);
-  }, [password]);
+  }, [password]);*/
 
-  function MyComponent({ actions }) {
-    const handleLogin = () => {
-      actions.login(username, password);
-    };
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
@@ -54,9 +49,7 @@ const Login = () => {
         <button
           type="button"
           className="loginb btn btn-outline-light btn-secondary px-5 "
-          onClick={(e) => {
-            actions.login(email, password);
-          }}
+          onClick={(e) => {actions.login(email, password)}}
         >
           Iniciar sesión
         </button>
@@ -69,6 +62,3 @@ const Login = () => {
     </div>
   );
 };
-
-
-export default Login;

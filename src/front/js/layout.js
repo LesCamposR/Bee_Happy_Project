@@ -6,7 +6,7 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-import  Login  from "./component/Login.jsx";
+import  {Login } from "./component/Login.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
