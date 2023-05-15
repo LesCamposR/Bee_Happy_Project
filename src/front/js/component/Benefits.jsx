@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import Green from "../../img/Green.jpg"
+import frames2 from "../../img/frames2.jpg"
 
 
 const Benefits = () => {
@@ -13,9 +13,10 @@ const Benefits = () => {
                         <p className="card-text">T</p>
                         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-                    <img src={Green} className="card-img-bottom" alt="..." />
+                    <img src={frames2} className="card-img-bottom" alt="..." />
                 </div>
             </div>
+
             <div className="col-8 bg-light justify-content-center mt-4 p-4">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">

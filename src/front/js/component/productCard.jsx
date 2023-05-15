@@ -77,7 +77,7 @@ const ProductCard = () => {
                                                     Opciones
                                                 </button>
                                                 <ul className="dropdown-menu">
-                                                    <li><a className="dropdown-item" href="#">Home</a></li>
+                                                    <li> <Link to="/" className="dropdown-item">Inicio</Link> </li>
                                                     <li><a className="dropdown-item" href="#">Productos</a></li>
                                                     <li> <Link to="/Benefits" className="dropdown-item">Beneficios</Link> </li>
                                                 </ul>
