@@ -24,6 +24,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 
+
+
 api = Blueprint('api', __name__)
 
 # Email*************************
@@ -123,6 +125,7 @@ def register_user():
     name = body["name"]
     password = body["password"]
     is_active = body["is_active"]
+   
 
     #validaciones
     if body is None:

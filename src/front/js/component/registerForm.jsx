@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
+import useFetch from "../store/flux";
 import "../../styles/home.css";
 
 export const RegisterForm = () => {
+  const { actions } = useContext(Context);
+
   const [username, setUsername] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -12,36 +16,34 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     const formData = new FormData(event.target);
+    const username = formData.get("username");
+    const lastName = formData.get("lastName");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const phoneNumber = formData.get("phoneNumber");
+    const birthday = formData.get("birthday");
+    const gender = formData.get("gender");
 
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: "example@email.com",
-        name: "John Doe",
-        password: "mypassword",
-        is_active: true,
-      }),
-    };
-
-    fetch(
-      "https://3001-lescamposr-beehappyproj-xmd9yqyicju.ws-us96b.gitpod.io/register",
-      requestOptions
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        console.log("User registered successfully");
-      })
-      .catch((error) => {
-        console.log("Registration error:", error);
+    try {
+      const { respuestaJson, response } = await useFetch("/api/register", {
+        username,
+        lastName,
+        email,
+        password,
+        phoneNumber,
+        birthday,
+        gender,
       });
+
+      console.log("Registration response:", response);
+      console.log("Registration response JSON:", respuestaJson);
+    } catch (error) {
+      console.log("Registration error:", error);
+    }
   };
 
   return (
@@ -70,7 +72,7 @@ export const RegisterForm = () => {
                   />
                 </div>
               </div>
-              <div class="col-md-6">
+              <div className="col-md-6">
                 <div className="form-outline">
                   <label className="form-label" htmlFor="lastName">
                     Last Name:
