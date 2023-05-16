@@ -230,7 +230,7 @@ def login():
 # Logout*************************
 
 
-@api.route("/logout", methods=["GET"])
+@api.route("/logout", methods=["POST"])
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)
@@ -430,7 +430,7 @@ def get_order_with_post():
     user_id = body["user_id"]
     product_id = body["product_id"]
 
-     datereg= datetime.now(timezone.utc)
+    datereg= datetime.now(timezone.utc)
 
     if user_id is None:
         raise APIException("You need to specify the user_id as a query parameter", status_code=400)
