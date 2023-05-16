@@ -6,7 +6,7 @@ import useFetch from "../store/flux";
 import "../../styles/home.css";
 
 export const RegisterForm = () => {
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const [username, setUsername] = useState("");
   const [lastName, setLastName] = useState("");
@@ -20,7 +20,7 @@ export const RegisterForm = () => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const username = formData.get("username");
+    const name = formData.get("username");
     const lastName = formData.get("lastName");
     const email = formData.get("email");
     const password = formData.get("password");
@@ -28,22 +28,15 @@ export const RegisterForm = () => {
     const birthday = formData.get("birthday");
     const gender = formData.get("gender");
 
-    try {
-      const { respuestaJson, response } = await useFetch("/api/register", {
-        username,
-        lastName,
-        email,
-        password,
-        phoneNumber,
-        birthday,
-        gender,
-      });
+    let { respuestaJson, response } = await actions.useFetch("/api/register", {
+      name,
+      email,
+      password,
+      is_active: true,
+    });
 
-      console.log("Registration response:", response);
-      console.log("Registration response JSON:", respuestaJson);
-    } catch (error) {
-      console.log("Registration error:", error);
-    }
+    console.log("Registration response:", response);
+    console.log("Registration response JSON:", respuestaJson);
   };
 
   return (
@@ -64,6 +57,7 @@ export const RegisterForm = () => {
                     Username:
                   </label>
                   <input
+                    name="username"
                     type="text"
                     className="form-control"
                     id="username"
@@ -78,6 +72,7 @@ export const RegisterForm = () => {
                     Last Name:
                   </label>
                   <input
+                    name="lastName"
                     type="text"
                     className="form-control"
                     id="lastName"
@@ -92,6 +87,7 @@ export const RegisterForm = () => {
                 Email:
               </label>
               <input
+                name="email"
                 type="email"
                 className="form-control"
                 id="email"
@@ -104,6 +100,7 @@ export const RegisterForm = () => {
                 Password:
               </label>
               <input
+                name="password"
                 type="password"
                 className="form-control"
                 id="password"
@@ -117,6 +114,7 @@ export const RegisterForm = () => {
                 Phone Number:
               </label>
               <input
+                name="phoneNumber"
                 type="text"
                 className="form-control"
                 id="phoneNumber"
@@ -131,6 +129,7 @@ export const RegisterForm = () => {
                   Birthday
                 </label>
                 <input
+                  name="birthday"
                   type="date"
                   className="form-control"
                   id="birthday"
@@ -143,6 +142,7 @@ export const RegisterForm = () => {
                   Gender
                 </label>
                 <select
+                  name="gender"
                   id="gender"
                   className="form-control"
                   value={gender}
