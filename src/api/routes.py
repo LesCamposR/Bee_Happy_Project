@@ -428,6 +428,8 @@ def get_order_with_post():
     user_id = body["user_id"]
     product_id = body["product_id"]
 
+     datereg= datetime.now(timezone.utc)
+
     if user_id is None:
         raise APIException("You need to specify the user_id as a query parameter", status_code=400)
 
@@ -436,7 +438,7 @@ def get_order_with_post():
         raise APIException('User not found', status_code=404)
     
     for product in product_id: 
-        new_order = Order(user_id=user_id, product_id=product, order_Date="05-05-2023")
+        new_order = Order(user_id=user_id, product_id=product, order_Date=datereg)
         db.session.add(new_order)
     #order = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user_orders.id)))
     
