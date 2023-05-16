@@ -13,8 +13,8 @@ import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
 import Us from "./component/Us.jsx";
 import Benefits from "./component/Benefits.jsx";
-import Contact from "./pages/contact";
-import ProductCard from "./component/productCard.jsx";
+import { Contact } from "./pages/contact";
+import { ProductCard } from "./component/productCard.jsx";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";

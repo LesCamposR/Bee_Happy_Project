@@ -7,7 +7,7 @@ import Arte3 from "../../img/Arte3.png";
 import Logo from "../../img/Logo.png";
 
 export const ProductCard = ({ product }) => {
-    console.log(product.title);
+
 
     return (<>
         <div class="alert alert-warning" role="alert">
@@ -128,4 +128,5 @@ export const ProductCard = ({ product }) => {
                 </div>
             </div>
         </div >
-
+    </>)
+}
