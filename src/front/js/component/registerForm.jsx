@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { Context } from "../store/appContext";
-import axios from "axios";
+import useFetch from "../store/flux";
 import "../../styles/home.css";
 
 export const RegisterForm = () => {
+  const { store, actions } = useContext(Context);
+
   const [username, setUsername] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,25 +16,29 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     const formData = new FormData(event.target);
-    axios
-      .post("/api/register", {
-        email: formData.get("email"),
-        name: formData.get("name"),
-        password: formData.get("password"),
-        is_active: formData.get("is_active"),
-      })
-      .then((response) => {
-        console.log("User registered successfully");
-        // add any additional code to handle successful registration here
-      })
-      .catch((error) => {
-        console.log("Registration error:", error);
-        // add any additional code to handle errors here
-      });
+    const name = formData.get("username");
+    const lastName = formData.get("lastName");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const phoneNumber = formData.get("phoneNumber");
+    const birthday = formData.get("birthday");
+    const gender = formData.get("gender");
+
+    let { respuestaJson, response } = await actions.useFetch("/api/register", {
+      name,
+      email,
+      password,
+      is_active: true,
+    });
+
+    console.log("Registration response:", response);
+    console.log("Registration response JSON:", respuestaJson);
   };
+
   return (
     <div className="background-image">
       <div className="row justify-content-center mt-4">
@@ -50,6 +57,7 @@ export const RegisterForm = () => {
                     Username:
                   </label>
                   <input
+                    name="username"
                     type="text"
                     className="form-control"
                     id="username"
@@ -58,12 +66,13 @@ export const RegisterForm = () => {
                   />
                 </div>
               </div>
-              <div class="col-md-6">
+              <div className="col-md-6">
                 <div className="form-outline">
                   <label className="form-label" htmlFor="lastName">
                     Last Name:
                   </label>
                   <input
+                    name="lastName"
                     type="text"
                     className="form-control"
                     id="lastName"
@@ -78,6 +87,7 @@ export const RegisterForm = () => {
                 Email:
               </label>
               <input
+                name="email"
                 type="email"
                 className="form-control"
                 id="email"
@@ -90,6 +100,7 @@ export const RegisterForm = () => {
                 Password:
               </label>
               <input
+                name="password"
                 type="password"
                 className="form-control"
                 id="password"
@@ -103,6 +114,7 @@ export const RegisterForm = () => {
                 Phone Number:
               </label>
               <input
+                name="phoneNumber"
                 type="text"
                 className="form-control"
                 id="phoneNumber"
@@ -110,12 +122,14 @@ export const RegisterForm = () => {
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
+
             <div className="form-group row mb-3">
               <div className="col-sm-6">
                 <label htmlFor="birthday" className="form-label">
                   Birthday
                 </label>
                 <input
+                  name="birthday"
                   type="date"
                   className="form-control"
                   id="birthday"
@@ -128,6 +142,7 @@ export const RegisterForm = () => {
                   Gender
                 </label>
                 <select
+                  name="gender"
                   id="gender"
                   className="form-control"
                   value={gender}

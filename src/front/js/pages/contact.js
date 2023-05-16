@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-const Contact = () => {
+
+export const Contact = () => {
   const [message, setMessage] = useState("");
+
   return (
     <div className="container mt-5">
       <div className="row justify-content-center mt-5">
@@ -49,4 +51,3 @@ const Contact = () => {
     </div>
   );
 };
-export default Contact;

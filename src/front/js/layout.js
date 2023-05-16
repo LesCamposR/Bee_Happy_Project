@@ -19,8 +19,6 @@ import ProductCard from "./component/productCard.jsx";
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
 // import Contact from "./pages/contact.js";
-// <Route element={<Contact />} path="/contact" />
-// <Route element={<RegisterUser />} path="/registeruser" />
 
 // create your first component
 const Layout = () => {
@@ -42,6 +40,7 @@ const Layout = () => {
             <Route element={<Demo />} path="/demo" />{" "}
             <Route element={<RegisterForm />} path="/registerForm" />{" "}
             <Route element={<ProductList />} path="/productsList" />{" "}
+            <Route element={<ProductCard />} path="/productsCard" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
