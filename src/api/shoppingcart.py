@@ -21,3 +21,4 @@ class Shoppingcart(db.Model):
             "product":Product.query.get(self.product_id).serialize()
             # do not serialize the password, its a security breach
         }
+

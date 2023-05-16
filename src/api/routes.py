@@ -24,6 +24,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 
+
+
 api = Blueprint('api', __name__)
 
 # Email*************************
@@ -123,6 +125,7 @@ def register_user():
     name = body["name"]
     password = body["password"]
     is_active = body["is_active"]
+   
 
     #validaciones
     if body is None:
@@ -250,14 +253,14 @@ def logout():
 
 @api.route('/product', methods=['GET'])
 def get_product():
-    product = product.query.all()  #<User Les>
-    product = list(map(lambda item: item.serialize(), product)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
-    print(product)
-  
+    products = Product.query.all()  #<User Les>
+    products = list(map(lambda item: item.serialize(), products)) #{name:Antonio, password:123, ....} {name:Usuario2, password:123.... }
+    print(products)
+    
     #return jsonify(product), 200
     Productbody = {
         "msg": "Ok",
-        "product": product
+        "product": products
     }
 
     return jsonify(Productbody)
@@ -268,6 +271,7 @@ def get_specific_product(id):
   
     return jsonify(product.serialize()), 200
 
+    
 
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
@@ -299,63 +303,60 @@ def delete_specific_product():
     body = request.get_json()   
     id = body["id"]
 
-    product = product.query.get(id) 
+    product = Product.query.get(id) 
 
     db.session.delete(product)
     db.session.commit()  
   
-    return jsonify("StartWars Character Deleted"), 200
+    return jsonify("Your Product was deleted Successfully"), 200
 
 @api.route('/put-product', methods=['PUT'])
 def edit_product():
     body = request.get_json()   
     id = body["id"]
-    name = body["name"]
-    gender = body["gender"]
-    eyes_color = body["eyes_color"]
-    height = body["height"]
+    Product_name = body["Product_name"]
+    Price = body["Price"]
+    Description = body["Description"]
+    Rating = body["Rating"]
+    Reviews = body["Reviews"]
+    Stock = body["Stock"] 
 
     if body is None:
         raise APIException("You need to specify the request body as json object", status_code=404)
-    if "name" not in body:
-        raise APIException("You need to specify the name", status_code=404)
-    if "gender" not in body:
-        raise APIException("You need to specify the birthdate", status_code=404)
-    if "eyes_color" not in body:
-        raise APIException("You need to specify the eyes", status_code=404)
-    if "height" not in body:
-        raise APIException("You need to specify the height", status_code=404)
-
-    product = product.query.get(id)   
-    product.name = name #modifique el nombre del usuario
-    product.gender = gender
-    product.eyes_color = eyes_color
-    product.height = height
+    if "id" not in body:
+        raise APIException("You need to specify the Product ID", status_code=404)
+    if "Product_name" not in body:
+        raise APIException("You need to specify the Product_name", status_code=404)
+   
+    product = Product.query.get(id)   
+    product.Product_name = Product_name #modifique el nombre del usuario
+    product.Price = Price
+    product.Description = Description
+    product.Rating = Rating
+    product.Reviews = Reviews
+    product.Stock = Stock
 
     db.session.commit()
   
     return jsonify(product.serialize()), 200
 
+# ShoppingCart*************************
+# ShoppingCart*************************
 
 @api.route('/shoppingcart', methods=['POST'])
 def add_shoppingcart():
     body = request.get_json()
-    user_id =body["user_id"]
-    product_id = body["product_id"]
+    user_id =["user_id"]
+    product_id = ["product_id"]
 
     product = Product.query.get(product_id)
     if not product:
         raise APIException('Product Not Found', status_code=404)
     
-    user = User.query.get(user_id)
+    user = User.query.get(user_id).first()
     if not user:
-        raise APIException('User Not Found', status_code=404)
+        raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
-    #fav_exist = Shoppingcart.query.filter_by(user_id=user.id, product_id=product.id).first() is not None
-
-   # if fav_exist:
-      #  raise APIException('Favorite already exists ', status_code=404)
-    
     favorite_product = Shoppingcart(user_id=user.id, product_id=product.id)
     db.session.add(favorite_product) 
     db.session.commit()
@@ -364,6 +365,7 @@ def add_shoppingcart():
         "product":favorite_product.serialize()["product_name"],
         "user": favorite_product.serialize()["user_name"]
     }), 200
+    
 
 @api.route('/removefavoriteproduct', methods=['DELETE'])
 def remove_favorite_product():
