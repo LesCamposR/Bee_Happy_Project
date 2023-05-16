@@ -11,7 +11,7 @@ class Product(db.Model):
     reviews = db.Column(db.String(200), unique=False, nullable=False)
     stock = db.Column(db.Integer, unique=False, nullable=False)
     #shoppingcart = db.relationship('shoppingcart', backref='product', lazy=True) 
-    order_id = db.relationship('order', backref='product', lazy=True)
+    #order_id = db.relationship('order', backref='product', lazy=True)
     def __repr__(self):
         return f'<Product {self.name}>'
 
