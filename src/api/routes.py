@@ -423,10 +423,10 @@ def get_favorites_with_post():
     }), 200
 
 @api.route('/order', methods=['POST'])
-
 def get_order_with_post():
     body = request.get_json()
     user_id = body["user_id"]
+    product_id = body["product_id"]
 
     if user_id is None:
         raise APIException("You need to specify the user_id as a query parameter", status_code=400)
@@ -435,16 +435,18 @@ def get_order_with_post():
     if not user_orders:
         raise APIException('User not found', status_code=404)
     
-   
-
-    favorite_product = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user.id)))
+    for product in product_id: 
+        new_order = Order(user_id=user_id, product_id=product, order_Date="05-05-2023")
+        db.session.add(new_order)
+    #order = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user_orders.id)))
     
 
-
+    #db.session.add(new_order) #agregamos la orden
+    db.session.commit() #guardamos los cambios en la base de datos
 
     return jsonify({
         "msg":"ok",
-        "get_order": order,
+        "get_order": product_id,
     }), 200
 
 # Protect a route with jwt_required, which will kick out requests
