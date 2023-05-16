@@ -247,20 +247,6 @@ def logout():
     return jsonify({"message":"successfully loggedout "})
 
 
-#ADD Product_______________________________
-#ADD Product_______________________________
-#ADD Product_______________________________
-
-
-
-
-   
-
-   
- 
-    
-
-
 #API Product_______________________________
 #API Product_______________________________
 #API Product_______________________________
@@ -285,35 +271,32 @@ def get_specific_product(id):
   
     return jsonify(product.serialize()), 200
 
+    
 
 @api.route('/post-product', methods=['POST'])
 def post_specific_product():
     body = request.get_json()   
+    name = body["name"]
+    price = body["price"]
+    description = body["description"]
+    rating = body["rating"]
+    reviews = body["reviews"]
+    stock= body["stock"]
+    
 
-    #id = body["id"]
-    Product_name = body["Product_name"]
-    Price = body["Price"]
-    Description = body["Description"]
-    Rating = body["Rating"]
-    Reviews = body["Reviews"]
-    Stock = body["Stock"] 
-     
-    #validaciones
     if body is None:
-        raise APIException("You need to specify the request body as json object", status_code=400)
-    if "Product_name" not in body:
-        raise APIException("You need to specify the product", status_code=400)
+        raise APIException("You need to specify the request body as json object", status_code=404)
+    if "name" not in body:
+        raise APIException("You need to specify the name", status_code=404)
+    
 
-    #define la nueva variable de Productos
-    #Products = Products.query.get(id)   
-    #define la nueva variable de Productos
-    new_product = Product(Product_name=Product_name, Price=Price, Description=Description, Rating=Rating, Reviews=Reviews, Stock=Stock)
+  
+    newproduct = Product(name=name, price=price, stock=stock, rating=rating, reviews=reviews, description=description )
 
-   #comitar la sesión
-    db.session.add(new_product) #agregamos el nuevo producto a la base de datos
-    db.session.commit() #guardamos los cambios en la base de datos
+    db.session.add(newproduct)
+    db.session.commit()
 
-    return jsonify({"mensaje":"The New Product Add Correctly"}), 201
+    return jsonify({"mensaje":"Product creado correctamente"}), 201
 
 @api.route('/delete-product', methods=['DELETE'])
 def delete_specific_product():
@@ -361,32 +344,28 @@ def edit_product():
 # ShoppingCart*************************
 
 @api.route('/shoppingcart', methods=['POST'])
-def add_shopping_cart():
+def add_shoppingcart():
     body = request.get_json()
     user_id =["user_id"]
     product_id = ["product_id"]
 
-    character = product.query.get(product_id)
-    if not character:
-        raise APIException('Character Not Found', status_code=404)
+    product = Product.query.get(product_id)
+    if not product:
+        raise APIException('Product Not Found', status_code=404)
     
     user = User.query.get(user_id).first()
     if not user:
         raise APIException('User Not Found', status_code=404)                                                                                                                                                                                                                    
 
-    fav_exist = favoriteproduct.query.filter_by(user_id = user.id, product_id = character.id).first() is not None
-
-    if fav_exist:
-        raise APIException('Favorite already exists ', status_code=404)
-    
-    favorite_product = favoriteproduct(user_id = user.id, product_id = character.id)
-    db.session.add(favorite_product) #agregamos el nuevo usuario a la base de datos
+    favorite_product = Shoppingcart(user_id=user.id, product_id=product.id)
+    db.session.add(favorite_product) 
     db.session.commit()
 
     return jsonify({
-        "product_name":favorite_product.serialize()["product_name"],
+        "product":favorite_product.serialize()["product_name"],
         "user": favorite_product.serialize()["user_name"]
     }), 200
+    
 
 @api.route('/removefavoriteproduct', methods=['DELETE'])
 def remove_favorite_product():
@@ -394,7 +373,7 @@ def remove_favorite_product():
     user_id = body["user_id"]
     product_id = body["product_id"]
 
-    favorite_product = Favoriteproduct.query.filter_by(user_id=user_id, product_id=product_id).first()
+    favorite_product = Shoppingcart.query.filter_by(user_id=user_id, product_id=product_id).first()
 
     if not favorite_product:
         raise APIException('Favorite product not found', status_code=404)
@@ -404,6 +383,67 @@ def remove_favorite_product():
 
     return jsonify({"msg":"Favorite product removed "}), 200
 
+
+# ShoppingCart*************************
+# ShoppingCart*************************
+
+@api.route('/shoppingcart/<int:user_id>', methods=['GET'])
+@jwt_required()
+def get_favorites(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        raise APIException('User not found', status_code=404)
+
+    favorite_product = list(map(lambda item: item.serialize()["product_name"], Shoppingcart.query.filter_by(user_id=user.id)))
+
+    return jsonify({
+        "msg":"ok",
+        "favorite_product": favorite_product,
+       
+    }), 200
+
+@api.route('/favorites', methods=['POST'])
+
+def get_favorites_with_post():
+    body = request.get_json()
+    user_id = body["user_id"]
+
+    if user_id is None:
+        raise APIException("You need to specify the user_id as a query parameter", status_code=400)
+
+    user = User.query.get(user_id)
+    if not user:
+        raise APIException('User not found', status_code=404)
+
+    favorite_product = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user.id)))
+    
+    
+
+    return jsonify({
+        "msg":"ok",
+        "all_favorites": favorite_product,
+    }), 200
+
+
+
+@api.route('/order', methods=['POST'])
+def get_order_with_post():
+    body = request.get_json()
+    user_id = body["user_id"]
+
+    if user_id is None:
+        raise APIException("You need to specify the user_id as a query parameter", status_code=400)
+
+    user_orders = User.query.get(user_id)
+    if not user_orders:
+        raise APIException('User not found', status_code=404)
+    
+    favorite_product = list(map(lambda item: {"name": item.serialize()["product_name"], "id": item.serialize()["product_id"]}, Shoppingcart.query.filter_by(user_id=user.id)))
+    
+    return jsonify({
+        "msg":"ok",
+        "get_order": order,
+    }), 200  
 
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
