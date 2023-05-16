@@ -37,33 +37,26 @@ export const ProductList = () => {
     console.log("Mostrando detalles del producto seleccionado");
   };
 
-  return (
-    <>
-      <Carousel activeIndex={index} onSelect={setIndex}>
-        {products.map((product, idx) => (
-          <Carousel.Item key={idx}>
-            <img
-              className="d-block w-100 carousel-image"
-              src={product.image}
-              alt={product.title}
-            />
-            <Carousel.Caption className="text-center">
-              <h3 className="mt-3 mb-2">{product.title}</h3>
-              <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-                {product.text}
-              </p>
-              <Link to={`/productsCard`}>
-              <button
-                type="button"
-                className=" btn btn-outline-dark btn-lg"
-                onClick={handleDetails}
-              >
-                Detalles
-              </button></Link>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
-    </>
-  );
+  return (<>
+    <Carousel activeIndex={index} onSelect={setIndex}>
+      {products.map((product, idx) => (
+        <Carousel.Item key={idx}>
+          <img
+            className="d-block w-100 carousel-image"
+            src={product.image}
+            alt={product.title}
+          />
+          <Carousel.Caption className="text-center">
+            <h3 className="mt-3 mb-2">{product.title}</h3>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              {product.text}
+            </p>
+            <Link to="/productCard" className=" btn btn-outline-dark btn-lg">Detalles!
+            </Link>
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
+    </Carousel >
+
+  </>);
 };
