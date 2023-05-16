@@ -34,7 +34,7 @@ export const Contact = () => {
             </label>
             <textarea
               type="text-area"
-              class="form-control mb-3"
+              className="form-control mb-3"
               placeholder="Enter your commit"
             ></textarea>
             <div className="d-flex justify-content-center">
