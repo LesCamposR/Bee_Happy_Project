@@ -53,13 +53,13 @@ export const ProductList = () => {
                 {product.text}
               </p>
               <Link to={`/productsCard`}>
-              <button
-                type="button"
-                className=" btn btn-outline-dark btn-lg"
-                onClick={handleDetails}
-              >
-                Detalles
-              </button></Link>
+                <button
+                  type="button"
+                  className=" btn btn-outline-dark btn-lg"
+                  onClick={handleDetails}
+                >
+                  Detalles
+                </button></Link>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
