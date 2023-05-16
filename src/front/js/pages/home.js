@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import Havies from "../../img/Havies.jpg";
 import frames from "../../img/frames.jpg";
+import { Beeplay } from "../../js/component/beeplay.jsx";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
@@ -9,7 +10,6 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-<<<<<<< HEAD
     <>
       <div className="alert alert-success" role="alert">
         <h4 className="alert-heading m-2">Bienvenido!</h4>
@@ -31,7 +31,9 @@ export const Home = () => {
             A simple warning alert—check it out!
           </div>
         </div>
-        <div className="col-8 bg-light text-center ">Game Component</div>
+        <div className="col-8 bg-light text-center ">
+          <Beeplay />
+        </div>
       </div>
       <div className="row justify-content-start d-flex">
         <div className="col-6 bg-light justify-content-center mt-4 p-4">
@@ -134,23 +136,5 @@ export const Home = () => {
         </div>
       </div>
     </>
-=======
-    <div className="text-center mt-5">
-      <h1>Hello Bee Happy!!</h1>
-      <p>
-        <img src={rigoImageUrl} />
-      </p>
-      <div className="alert alert-info">
-        {store.message ||
-          "Loading message from the backend (make sure your python backend is running)..."}
-      </div>
-      <p>
-        This boilerplate comes with lots of documentation:{" "}
-        <a href="https://start.4geeksacademy.com/starters/react-flask">
-          Read documentation
-        </a>
-      </p>
-    </div>
->>>>>>> Developer
   );
 };
