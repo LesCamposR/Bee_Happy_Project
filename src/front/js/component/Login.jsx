@@ -46,7 +46,7 @@ export const Login = () => {
           />
         </div>
         <br></br>
-        <Link to="/productList"><button
+        <Link to="/productsList"><button
           type="button"
           className="loginb btn btn-outline-light btn-secondary px-5 "
           onClick={(e) => {actions.login(email, password)}}
