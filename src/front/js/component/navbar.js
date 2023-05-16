@@ -10,13 +10,19 @@ export const Navbar = () => {
     <nav className="navbar navbar-light">
       <div className="container">
         <div>
+          <Link to="/">
+            <span id="products" className="navbar-brand mb-0 h1">
+              {" "}
+              Inicio{" "}
+            </span>{" "}
+          </Link>{" "}
           <Link to="/productsList">
             <span id="products" className="navbar-brand mb-0 h1">
               {" "}
               Productos{" "}
             </span>{" "}
           </Link>{" "}
-          <Link to="/">
+          <Link to="/Us">
             <span className="navbar-brand mb-0 h1"> Conocenos </span>{" "}
           </Link>{" "}
           <Link to="/contact">

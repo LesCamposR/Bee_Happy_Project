@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
 export const Contact = () => {
-
   const [message, setMessage] = useState("");
 
-  
   return (
     <div className="container mt-5">
       <div className="row justify-content-center mt-5">
