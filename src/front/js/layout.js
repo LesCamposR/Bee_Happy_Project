@@ -11,13 +11,11 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
-import { ProductCard } from "./component/productCard.jsx";
-import { Beeplay } from "./component/beeplay.jsx";
 import Us from "./component/Us.jsx";
 import Benefits from "./component/Benefits.jsx";
+import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
 import { ProductCard } from "./component/productCard.jsx";
-import ShoppingCard from "./component/ShoppingCard.jsx";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
@@ -46,10 +44,10 @@ const Layout = () => {
             <Route element={<ProductCard />} path="/productsCard" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
-            <Route element={<ShoppingCard />} path="/shoppingcard" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
+            <Route element={<Beeplay />} path="/beeplay" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}

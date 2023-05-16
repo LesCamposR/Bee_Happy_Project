@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../../styles/home.css";
 import abejaGuerreraImage from "../../img/abeja-guerrera.jpg";
-import abejaentusiasta from "../../img/abeja-entusiasta.jpg";
-import abejatrabajadora from "../../img/abeja-trabajadora.jpg";
-import abejareina from "../../img/abeja-reina.jpg";
+import abejaEntusiastaImage from "../../img/abeja-entusiasta.jpg";
+import abejaTrabajadoraImage from "../../img/abeja-trabajadora.jpg";
+import abejaReinaImage from "../../img/abeja-reina.png";
 
-const Beeplay = () => {
+export const Beeplay = () => {
     const [randomMsg, setRandomMsg] = useState("");
     const [randomImage, setRandomImage] = useState("");
 
@@ -18,9 +18,9 @@ const Beeplay = () => {
 
     const images = [
         abejaGuerreraImage,
-        abejareina,
-        abejatrabajadora,
-        abejaentusiasta
+        abejaReinaImage,
+        abejaTrabajadoraImage,
+        abejaEntusiastaImage
     ];
 
     const generateRandomMsg = () => {
@@ -36,7 +36,13 @@ const Beeplay = () => {
         <div>
             <button onClick={generateRandomMsg}>GET A MSG</button>
             <p>{randomMsg}</p>
-            {randomImage && <img src={randomImage} alt="Imagen" />}
+            {randomImage && (
+                <img
+                    src={randomImage}
+                    alt="Imagen"
+                    style={{ width: "200px", height: "auto" }}
+                />
+            )}
         </div>
     );
 };
