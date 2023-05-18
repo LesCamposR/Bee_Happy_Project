@@ -100,7 +100,15 @@ export const ProductCard = ({ product }) => {
                                             <option value="7">+</option>
                                         </select>
                                     </div>
-                                    <div className="col text-center "><button type="button" className="btn btn-outline-dark">Add to Cart</button></div>
+                                    <div className="col text-center "><button type="button" className="btn btn-outline-dark" onClick={() => {
+                                        actions.agregarFavorito({
+                                            name: props.name,
+                                            uid: props.uid,
+                                            category: "people",
+                                            link: `/people/${props.uid}`
+                                        }
+                                        )
+                                    }}>Add to Cart</button></div>
                                 </div>
                             </div>
 

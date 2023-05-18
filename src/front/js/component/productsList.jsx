@@ -36,7 +36,6 @@ export const ProductList = () => {
     <ProductCard data={product} />;
     console.log("Mostrando detalles del producto seleccionado");
   };
-
   return (<>
     <Carousel activeIndex={index} onSelect={setIndex}>
       {products.map((product, idx) => (

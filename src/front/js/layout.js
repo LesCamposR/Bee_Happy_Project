@@ -13,6 +13,7 @@ import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
 import Us from "./component/Us.jsx";
 import Benefits from "./component/Benefits.jsx";
+import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
 import { ProductCard } from "./component/productCard.jsx";
 
@@ -46,6 +47,7 @@ const Layout = () => {
             <Route element={<Us />} path="/Us" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
+            <Route element={<Beeplay />} path="/beeplay" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}

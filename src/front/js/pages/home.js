@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import Havies from "../../img/Havies.jpg";
 import frames from "../../img/frames.jpg";
+import { Beeplay } from "../../js/component/beeplay.jsx";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 
@@ -30,7 +31,9 @@ export const Home = () => {
             A simple warning alert—check it out!
           </div>
         </div>
-        <div className="col-8 bg-light text-center ">Game Component</div>
+        <div className="col-8 bg-light text-center ">
+          <Beeplay />
+        </div>
       </div>
       <div className="row justify-content-start d-flex">
         <div className="col-6 bg-light justify-content-center mt-4 p-4">
