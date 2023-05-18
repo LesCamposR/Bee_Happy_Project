@@ -30,8 +30,11 @@ export const RegisterForm = () => {
 
     let { respuestaJson, response } = await actions.useFetch("/api/register", {
       name,
+      lastName,
       email,
       password,
+      phoneNumber,
+      birthday,
       is_active: true,
     });
 
