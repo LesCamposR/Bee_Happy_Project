@@ -7,6 +7,7 @@ from .products import Product
 from .shoppingcart import Shoppingcart
 from .user import User
 from .shoppinghistory import ShoppingHistory
+from .tokenblocklist import TokenBlockedList
 
 
 from flask_admin.contrib.sqla import ModelView
@@ -27,6 +28,7 @@ def setup_admin(app):
     admin.add_view(ModelView(Shoppingcart, db.session))
     admin.add_view(ModelView(ShoppingHistory, db.session))
     admin.add_view(ModelView(Order, db.session))
+    admin.add_view(ModelView(TokenBlockedList, db.session))
 
     # You can duplicate that line to add mew models
     # admin.add_view(ModelView(YourModelName, db.session))

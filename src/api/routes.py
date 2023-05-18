@@ -10,11 +10,12 @@ from api.shoppingcart import Shoppingcart
 from api.shoppinghistory import ShoppingHistory
 from api.order import Order
 from api.utils import generate_sitemap, APIException
+from api.tokenblocklist import TokenBlockedList
 
 
 from api.extensions import jwt, bcrypt
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, get_jwt
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from datetime import datetime, timezone, time
@@ -230,17 +231,18 @@ def login():
 # Logout*************************
 
 
-@api.route("/logout", methods=["GET"])
+@api.route("/logout", methods=["POST"])
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)
     #now = datetime.now(timezone.utc) 
+    datetim= datetime.now(timezone.utc)
 
     # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
     user = User.query.get(current_user)
 
-    tokenBlocked = TokenBlockedList(token=jti , created_at=now, email=user.email)
+    tokenBlocked = TokenBlockedList(token=jti ,created_at=datetim,  email=user.email)
     db.session.add(tokenBlocked)
     db.session.commit()
 
