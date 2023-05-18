@@ -28,10 +28,15 @@ export const RegisterForm = () => {
     const birthday = formData.get("birthday");
     const gender = formData.get("gender");
 
+    console.log(lastName, phoneNumber)
+
     let { respuestaJson, response } = await actions.useFetch("/api/register", {
       name,
+      lastName,
       email,
       password,
+      phoneNumber,
+      birthday,
       is_active: true,
     });
 

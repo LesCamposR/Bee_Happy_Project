@@ -125,6 +125,9 @@ def register_user():
     email = body["email"]
     name = body["name"]
     password = body["password"]
+    lastname = body ["lastName"]
+    phonenumber = body ["phoneNumber"]
+    birthdate = body["birthday"]
     is_active = body["is_active"]
    
 
@@ -138,7 +141,7 @@ def register_user():
     #datetim="1980-12-24"
     datetim= datetime.now(timezone.utc)
     #creada la clase User en la variable new_user
-    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active, lastname="null", phonenumber="null", birthdate=datetim,address="null",country="null",last_login=datetim,email_recover="null",securityQA1="null",securityQA2="null",user_creation_date=datetim,role="null", status="active")
+    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active, lastname=lastname, phonenumber=phonenumber, birthdate=datetim,address="null",country="null",last_login=datetim,email_recover="null",securityQA1="null",securityQA2="null",user_creation_date= datetim,role="", status="active")
 
     #comitear la sesión
     db.session.add(new_user) #agregamos el nuevo usuario a la base de datos
