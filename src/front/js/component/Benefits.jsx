@@ -20,14 +20,25 @@ const Benefits = () => {
             <div className="col-8 bg-light justify-content-center mt-4 p-4">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button
+                                class="accordion-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne"
+                                aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseOne"
+                            >
                                 <h4>Colabora en el tratamiento de las heridas:</h4>
                             </button>
                         </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div
+                            id="panelsStayOpen-collapseOne"
+                            class="accordion-collapse collapse show"
+                            aria-labelledby="panelsStayOpen-headingOne"
+                        >
                             <div class="accordion-body">
-                                <strong>La Miel de Abeja</strong> se ha utilizado a lo largo de los años para tratar heridas, picaduras de insectos, quemaduras, trastornos de la piel, llagas
+                                <strong>La Miel de Abeja</strong> se ha utilizado a lo largo de los años para tratar heridas, picaduras de insectos, quemaduras, trastornos de la piel, llagas.
                             </div>
                         </div>
                     </div>
@@ -53,6 +64,18 @@ const Benefits = () => {
                         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                             <div class="accordion-body">
                                 <strong>La Miel de Abeja</strong> puede ser eficaz en el tratamiento del dolor de garganta gracias a sus propiedades antiinflamatorias, antivirales y antifúngicas. A su vez, “la miel es superior a otros tratamientos para la tos inducida por infecciones de las vías respiratorias superiores”.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <h4>Actúa contra la gastritis y la úlcera péptica:</h4>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="accordion-body">
+                                <strong>La Miel de Abeja</strong> es un potente inhibidor de la gastritis (irritación e inflamación del revestimiento de la pared del estómago) y del agente causante de la úlcera péptica (erosiones o úlceras dolorosas abiertas en el revestimiento del estómago o del duodeno).
                             </div>
                         </div>
                     </div>
