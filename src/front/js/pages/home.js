@@ -28,7 +28,11 @@ export const Home = () => {
       <div className="row justify-content-center d-flex">
         <div className="col-4 bg-light text-center ">
           <div class="alert alert-warning m-4" role="alert">
-            A simple warning alert—check it out!
+            Nutricionalmente hablando Una cucharada de miel (21 gramos) puede
+            contener lo siguiente: 64 calorías. 17 gramos de azúcar, incluidas
+            la fructosa, la glucosa, maltosa y sucrosa. Está prácticamente libre
+            de fibra, grasa o proteína. Vitaminas y minerales en cantidades
+            pequeñas. Antioxidantes.
           </div>
         </div>
         <div className="col-8 bg-light text-center ">
@@ -48,7 +52,7 @@ export const Home = () => {
                   aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
-                  Accordion Item #1
+                  Datos curioso
                 </button>
               </h2>
               <div
@@ -57,7 +61,8 @@ export const Home = () => {
                 aria-labelledby="panelsStayOpen-headingOne"
               >
                 <div class="accordion-body">
-                  <strong>This is the first item's accordion body.</strong> .
+                  <strong>La Abeja</strong> es el único insecto que produce
+                  alimentos consumidos por el hombre.
                 </div>
               </div>
             </div>
