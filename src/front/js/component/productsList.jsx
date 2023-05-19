@@ -7,7 +7,6 @@ import { ProductCard } from "./productCard.jsx";
 import Bottle2 from "../../img/Bottle2.jpg";
 import Medium from "../../img/Medium.jpg";
 import Small from "../../img/Small.jpg";
-
 const products = [
   {
     id: 1,
@@ -34,11 +33,9 @@ const products = [
     buttonD: "/productCard/3"
   },
 ];
-
 export const ProductList = () => {
   const [index, setIndex] = useState(0);
   const [product, setProduct] = useState(products);
-
   const handleDetails = () => {
     // Ir al otro componente card individual
     //console.log("Quiero Cruzar");
@@ -51,7 +48,7 @@ export const ProductList = () => {
         {products.map((product, idx) => (
           <Carousel.Item key={idx}>
             <img
-              className="d-block w-100 carousel-image"
+              className="d-block w-50 carousel-image" width="50%"
               src={product.image}
               alt={product.title}
             />
@@ -73,3 +70,17 @@ export const ProductList = () => {
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
