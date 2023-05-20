@@ -9,20 +9,20 @@ export const Contact = () => {
         <h3 className="title"> Contact </h3>
         <div className="col-sm-4 rounded-3 m-3 p-3 border">
           <form>
-            <label className="form-label fs-5">Full Name</label>
+            <label className="form-label fs-5">Nombre Completo</label>
             <input
               type="text"
               className="form-control mb-3"
               placeholder="Enter Full Name"
             />
-            <label className="form-label fs-5">Email</label>
+            <label className="form-label fs-5">Correo</label>
             <input
               type="email"
               className="form-control mb-3"
               placeholder="Enter email"
             />
             <label htmlFor="phone" className="form-label fs-5">
-              Phone
+              Telefono
             </label>
             <input
               type="text"
