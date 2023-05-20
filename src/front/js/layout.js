@@ -11,6 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
+import { Products } from "./component/products.jsx";
 import Us from "./component/Us.jsx";
 import Benefits from "./component/Benefits.jsx";
 import { Beeplay } from "./component/beeplay.jsx";
@@ -44,6 +45,7 @@ const Layout = () => {
             <Route element={<ProductCard />} path="/productsCard" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
+            <Route element={<Products />} path="/products" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}

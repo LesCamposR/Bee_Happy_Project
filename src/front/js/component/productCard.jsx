@@ -8,7 +8,9 @@ import Logo from "../../img/Logo.png";
 import Medium from "../../img/Medium.jpg";
 import Small from "../../img/Small.jpg";
 
-export const ProductCard = ({ index, product }) => {
+export const ProductCard = ({ index, prod }) => {
+  console.log(prod);
+
   return (
     <>
       <div class="alert alert-warning" role="alert">
@@ -31,8 +33,9 @@ export const ProductCard = ({ index, product }) => {
               >
                 <div className="carousel-inner">
                   <div className="carousel-item active">
+                    console.log(prod.image)
                     <img
-                      src={product.image}
+                      src={Bottle}
                       className="d-block w-100 rounded"
                       alt="bottleofHoney"
                     />

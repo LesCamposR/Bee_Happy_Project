@@ -16,7 +16,7 @@ export const Navbar = () => {
               Inicio{" "}
             </span>{" "}
           </Link>{" "}
-          <Link to="/productsList">
+          <Link to="/products">
             <span id="products" className="navbar-brand mb-0 h1">
               {" "}
               Productos{" "}
