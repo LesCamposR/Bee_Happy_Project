@@ -28,13 +28,18 @@ export const Home = () => {
       <div className="row justify-content-center d-flex">
         <div className="col-4 bg-light text-center ">
           <div className="alert alert-warning m-4" role="alert">
+<<<<<<< HEAD
             A simple warning alert—check it out!
+=======
+            Quieres saber que tipo de abeja eres hoy?
+>>>>>>> Developer
           </div>
         </div>
         <div className="col-8 bg-light text-center ">
           <Beeplay />
         </div>
       </div>
+<<<<<<< HEAD
       <div className="row justify-content-start d-flex">
         <div className="col-6 bg-light justify-content-center mt-4 p-4">
           <div className="accordion" id="accordionPanelsStayOpenExample">
@@ -126,6 +131,9 @@ export const Home = () => {
           </div>
         </div>
       </div>
+=======
+
+>>>>>>> Developer
       <br />
       <div className="row justify-content-center d-flex">
         <div className="col-6 bg-light text-center ">

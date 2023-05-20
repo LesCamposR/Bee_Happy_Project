@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/home.css";
 import abejaGuerreraImage from "../../img/abeja-guerrera.jpg";
-import abejaEntusiastaImage from "../../img/abeja-entusiasta.jpg";
-import abejaTrabajadoraImage from "../../img/abeja-trabajadora.jpg";
+import abejaEntusiastaImage from "../../img/abeja-entusiasta.png";
+import abejaTrabajadoraImage from "../../img/abeja-trabajadora.png";
 import abejaReinaImage from "../../img/abeja-reina.png";
 
 export const Beeplay = () => {
@@ -10,10 +10,10 @@ export const Beeplay = () => {
     const [randomImage, setRandomImage] = useState("");
 
     const messages = [
-        "Soy una abeja guerrera",
-        "Soy una abeja reina",
-        "Soy una abeja trabajadora",
-        "Soy una abeja entusiasta"
+        "Soy una abeja guerrera, un líder natural, capaz de tomar decisiones y darlo todo por su grupo",
+        "Soy una abeja reina, soy parte de la realeza, pero nunca abandono a mi familia",
+        "Soy una abeja trabajadora, no hay nada que no podamos hacer, nuestro esfuerzo en conjunto crea maravillas",
+        "Soy una abeja entusiasta, cada granito de arena que aportas en la vida contribuye a una buena causa"
     ];
 
     const images = [
