@@ -16,6 +16,7 @@ export const RegisterForm = () => {
   const [birthday, setBirthday] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,6 +42,8 @@ export const RegisterForm = () => {
 
     console.log("Registration response:", response);
     console.log("Registration response JSON:", respuestaJson);
+
+    setRegistrationSuccess(true);
   };
 
   return (
@@ -168,12 +171,18 @@ export const RegisterForm = () => {
               </div>
             </div>
             <div className="d-grid gap-2 col-6 mx-auto">
-              <button
-                type="submit"
-                className="btn btn-outline-light btn-lg mt-5"
-              >
-                Register
-              </button>
+              {registrationSuccess ? (
+                <Link to="/login" className="btn btn-success btn-lg mt-5">
+                  Has sido registrado con éxito
+                </Link>
+              ) : (
+                <button
+                  type="submit"
+                  className="btn btn-outline-dark btn-lg mt-5"
+                >
+                  Register
+                </button>
+              )}
             </div>
           </form>
         </div>
