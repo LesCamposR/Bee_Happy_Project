@@ -6,7 +6,7 @@ export const Contact = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center mt-5">
-        <h3 className="title"> Contact </h3>
+        <h3 className="title"> Contacto </h3>
         <div className="col-sm-4 rounded-3 m-3 p-3 border">
           <form>
             <label className="form-label fs-5">Nombre Completo</label>

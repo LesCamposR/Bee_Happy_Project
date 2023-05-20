@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-
 export const Login = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
@@ -14,7 +13,6 @@ export const Login = () => {
   /*useEffect(() => {
     console.log(password);
   }, [password]);*/
-
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
@@ -46,13 +44,17 @@ export const Login = () => {
           />
         </div>
         <br></br>
-        <Link to="/productsList"><button
-          type="button"
-          className="loginb btn btn-outline-light btn-secondary px-5 "
-          onClick={(e) => {actions.login(email, password)}}
-        >
-          Iniciar sesión
-        </button></Link>
+        <Link to="/products">
+          <button
+            type="button"
+            className="loginb btn btn-outline-light btn-secondary px-5 "
+            onClick={(e) => {
+              actions.login(email, password);
+            }}
+          >
+            Iniciar sesión
+          </button>
+        </Link>
         <Link to="/">
           <button className="btn btn-outline-light btn-secondary px-5">
             Back home
