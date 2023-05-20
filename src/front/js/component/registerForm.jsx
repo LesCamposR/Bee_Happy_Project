@@ -54,7 +54,7 @@ export const RegisterForm = () => {
       <div className="row justify-content-center mt-4">
         <div className="register col-sm-4 rounded-3 m-5 p-3">
           <h3 className="row justify-content-center text-white">
-            Registration Form
+            Registro de usuario
           </h3>
           <form
             id="registerForm"
@@ -69,7 +69,7 @@ export const RegisterForm = () => {
                     className="userName form-label text-white"
                     htmlFor="username"
                   >
-                    Name:
+                    Nombre:
                   </label>
                   <input
                     name="username"
@@ -84,7 +84,7 @@ export const RegisterForm = () => {
               <div className="col-md-6">
                 <div className="form-outline">
                   <label className="form-label text-white" htmlFor="lastName">
-                    Last Name:
+                    Apellido:
                   </label>
                   <input
                     name="lastName"
@@ -99,7 +99,7 @@ export const RegisterForm = () => {
             </div>
             <div>
               <label className="form-label text-white" htmlFor="email">
-                Email:
+                Correo:
               </label>
               <input
                 name="email"
@@ -112,7 +112,7 @@ export const RegisterForm = () => {
             </div>
             <div>
               <label className="form-label text-white" htmlFor="password">
-                Password:
+                Contraseña:
               </label>
               <input
                 name="password"
@@ -126,7 +126,7 @@ export const RegisterForm = () => {
 
             <div>
               <label className="form-label text-white" htmlFor="phoneNumber">
-                Phone Number:
+                Teléfono:
               </label>
               <input
                 name="phoneNumber"
@@ -141,7 +141,7 @@ export const RegisterForm = () => {
             <div className="form-group row mb-3">
               <div className="col-sm-6">
                 <label htmlFor="birthday" className="form-label text-white">
-                  Birthday
+                  Fecha de nacimiento:
                 </label>
                 <input
                   name="birthday"
@@ -154,7 +154,7 @@ export const RegisterForm = () => {
               </div>
               <div className="col-sm-6">
                 <label htmlFor="gender" className="form-label text-white">
-                  Gender
+                  Género:
                 </label>
                 <select
                   name="gender"
@@ -163,10 +163,10 @@ export const RegisterForm = () => {
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
-                  <option value="">Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="">Seleccciona</option>
+                  <option value="male">Hombre</option>
+                  <option value="female">Mujer</option>
+                  <option value="other">Otro</option>
                 </select>
               </div>
             </div>
@@ -178,9 +178,9 @@ export const RegisterForm = () => {
               ) : (
                 <button
                   type="submit"
-                  className="btn btn-outline-dark btn-lg mt-5"
+                  className="btn btn-outline-light btn-lg mt-5"
                 >
-                  Register
+                  Registrarte
                 </button>
               )}
             </div>
