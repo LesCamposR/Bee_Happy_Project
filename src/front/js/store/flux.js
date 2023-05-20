@@ -3,6 +3,7 @@ import {
   shoppingCartStore,
   shoppingCartActions,
 } from "../component/ShoppingCard.js";
+import { favoritesStore, favoritesActions } from "./favorites.jsx";
 import { Form } from "react-bootstrap";
 const getState = ({ getStore, getActions, setStore }) => {
   return {
@@ -10,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       message: null,
       ...userStore,
       ...shoppingCartStore,
+      ...favoritesStore,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -22,6 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       ...userActions(getStore, getActions, setStore),
       ...shoppingCartActions(getStore, getActions, setStore),
+      ...favoritesActions(getStore, getActions, setStore),
       useFetch: async (endpoint, body, method = "POST") => {
         let url = process.env.BACKEND_URL + endpoint;
         console.log(url);
