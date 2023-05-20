@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Context } from "../store/appContext";
 import useFetch from "../store/flux";
 import "../../styles/home.css";
+import background from "../../img/Green.jpg";
 
 export const RegisterForm = () => {
   const { store, actions } = useContext(Context);
@@ -15,6 +16,7 @@ export const RegisterForm = () => {
   const [birthday, setBirthday] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,13 +42,20 @@ export const RegisterForm = () => {
 
     console.log("Registration response:", response);
     console.log("Registration response JSON:", respuestaJson);
+
+    setRegistrationSuccess(true);
   };
 
   return (
-    <div className="background-image">
+    <div
+      className="background-image"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="row justify-content-center mt-4">
         <div className="register col-sm-4 rounded-3 m-5 p-3">
-          <h3 className="row justify-content-center">Registration Form</h3>
+          <h3 className="row justify-content-center text-white">
+            Registration Form
+          </h3>
           <form
             id="registerForm"
             action="/register"
@@ -56,8 +65,11 @@ export const RegisterForm = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label className="userName form-label" htmlFor="username">
-                    Username:
+                  <label
+                    className="userName form-label text-white"
+                    htmlFor="username"
+                  >
+                    Name:
                   </label>
                   <input
                     name="username"
@@ -71,7 +83,7 @@ export const RegisterForm = () => {
               </div>
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label className="form-label" htmlFor="lastName">
+                  <label className="form-label text-white" htmlFor="lastName">
                     Last Name:
                   </label>
                   <input
@@ -86,7 +98,7 @@ export const RegisterForm = () => {
               </div>
             </div>
             <div>
-              <label className="form-label" htmlFor="email">
+              <label className="form-label text-white" htmlFor="email">
                 Email:
               </label>
               <input
@@ -99,7 +111,7 @@ export const RegisterForm = () => {
               />
             </div>
             <div>
-              <label className="form-label" htmlFor="password">
+              <label className="form-label text-white" htmlFor="password">
                 Password:
               </label>
               <input
@@ -113,7 +125,7 @@ export const RegisterForm = () => {
             </div>
 
             <div>
-              <label className="form-label" htmlFor="phoneNumber">
+              <label className="form-label text-white" htmlFor="phoneNumber">
                 Phone Number:
               </label>
               <input
@@ -128,7 +140,7 @@ export const RegisterForm = () => {
 
             <div className="form-group row mb-3">
               <div className="col-sm-6">
-                <label htmlFor="birthday" className="form-label">
+                <label htmlFor="birthday" className="form-label text-white">
                   Birthday
                 </label>
                 <input
@@ -141,7 +153,7 @@ export const RegisterForm = () => {
                 />
               </div>
               <div className="col-sm-6">
-                <label htmlFor="gender" className="form-label">
+                <label htmlFor="gender" className="form-label text-white">
                   Gender
                 </label>
                 <select
@@ -159,12 +171,18 @@ export const RegisterForm = () => {
               </div>
             </div>
             <div className="d-grid gap-2 col-6 mx-auto">
-              <button
-                type="submit"
-                className="btn btn-outline-dark btn-lg mt-5"
-              >
-                Register
-              </button>
+              {registrationSuccess ? (
+                <Link to="/login" className="btn btn-success btn-lg mt-5">
+                  Has sido registrado con éxito
+                </Link>
+              ) : (
+                <button
+                  type="submit"
+                  className="btn btn-outline-dark btn-lg mt-5"
+                >
+                  Register
+                </button>
+              )}
             </div>
           </form>
         </div>
