@@ -66,7 +66,7 @@ export const RegisterForm = () => {
                     className="userName form-label text-white"
                     htmlFor="username"
                   >
-                    Username:
+                    Name:
                   </label>
                   <input
                     name="username"
