@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import useFetch from "../store/flux";
-import { Login } from "../component/Login.jsx";
 import "../../styles/home.css";
 import background from "../../img/Green.jpg";
 
@@ -174,7 +173,7 @@ export const RegisterForm = () => {
             <div className="d-grid gap-2 col-6 mx-auto">
               {registrationSuccess ? (
                 <Link to="/Login" className="btn btn-success btn-lg mt-5">
-                  Has sido registrado con éxito
+                  Ir a Login
                 </Link>
               ) : (
                 <button

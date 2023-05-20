@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import background from "../../img/Sunset.jpg";
+import background from "../../img/Havies.jpg";
 
 export const Contact = () => {
   const [message, setMessage] = useState("");
 
   return (
-    <div className="container mt-5">
-      <div
-        className=" row justify-content-center mt-5"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <h3 className="row justify-content-center text-white title">
-          {" "}
-          Contáctnos{" "}
-        </h3>{" "}
-        <div className="Contanct col-sm-4 rounded-3 m-3 p-3 border">
+    <div
+      className="container-fluid p-0"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        margin: "0",
+        padding: "0",
+        height: "100vh",
+      }}
+    >
+      <div className=" row justify-content-center p-4">
+        <div className="Contanct col-sm-4 rounded-3 mt-4 p-3">
+          <h3 className="row justify-content-center text-white title">
+            {" "}
+            Contáctanos{" "}
+          </h3>{" "}
           <form>
             <label className="form-label fs-5 text-white">
               {" "}
