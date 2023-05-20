@@ -1,52 +1,14 @@
-import React, {
-    useContext
-} from "react";
-import {
-    Context
-} from "../store/appContext";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import Havies from "../../img/Havies.jpg";
 import frames from "../../img/frames.jpg";
 import { Beeplay } from "../../js/component/beeplay.jsx";
 import "../../styles/home.css";
-import {
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
-    const {
-        store,
-        actions
-    } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-<<<<<<< HEAD
-    return ( <
-        div className = "text-center mt-5" >
-        <
-        h1 > Hello Bee Happy!! < /h1> <
-        p >
-        <
-        img src = {
-            rigoImageUrl
-        }
-        /> <
-        /p> <
-        div className = "alert alert-info" > {
-            store.message ||
-            "Loading message from the backend (make sure your python backend is running)..."
-        } <
-        /div> <
-        p >
-        This boilerplate comes with lots of documentation: {
-            " "
-        } <
-        a href = "https://start.4geeksacademy.com/starters/react-flask" >
-        Read documentation <
-        /a> <
-        /p> <
-        /div>
-    );
-};
-=======
   return (
     <>
       <div className="alert alert-success" role="alert">
@@ -176,4 +138,3 @@ export const Home = () => {
     </>
   );
 };
->>>>>>> Developer
