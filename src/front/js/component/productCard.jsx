@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Bottle from "../../img/Bottle.jpg";
 import Bottle2 from "../../img/Bottle2.jpg";
-import Arte3 from "../../img/Arte3.png";
 import Logo from "../../img/Logo.png";
 import Medium from "../../img/Medium.jpg";
 import Small from "../../img/Small.jpg";
