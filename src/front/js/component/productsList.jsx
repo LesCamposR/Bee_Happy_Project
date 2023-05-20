@@ -12,21 +12,24 @@ const products = [
     name: "Botella",
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 6000,
-    image: Bottle2
+    image: Bottle2,
+    quantity: 0
   },
   {
     id: 2,
     name: "Jarra Mediana",
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 4500,
-    image: Medium
+    image: Medium,
+    quantity: 0
   },
   {
     id: 3,
     name: "Jarra Pequena",
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 3500,
-    image: Small
+    image: Small,
+    quantity: 0
   }
 ];
 
@@ -46,21 +49,28 @@ export const ProductList = () => {
     } else {
       if (product) {
         actions.addFavorite({ ...product, quantity: 1 });
+        product.quantity = 1; // Actualizar cantidad en productos
       }
     }
   };
 
   const handleIncrement = (productId) => {
     const favorite = favorites.find((item) => item.id === productId);
-    if (favorite) {
+    const product = products.find((item) => item.id === productId);
+
+    if (favorite && product) {
       actions.setFavoriteQuantity(productId, favorite.quantity + 1);
+      product.quantity = favorite.quantity + 1; // Actualizar cantidad en productos
     }
   };
 
   const handleDecrement = (productId) => {
     const favorite = favorites.find((item) => item.id === productId);
-    if (favorite && favorite.quantity > 0) {
+    const product = products.find((item) => item.id === productId);
+
+    if (favorite && product && favorite.quantity > 0) {
       actions.setFavoriteQuantity(productId, favorite.quantity - 1);
+      product.quantity = favorite.quantity - 1; // Actualizar cantidad en productos
     }
   };
 
@@ -84,8 +94,7 @@ export const ProductList = () => {
                       role="button"
                       variant="primary"
                       onClick={() => handleLikeClick(product.id)}
-                      className={`fs-3 fa ${isProductFavorite(product.id) ? "fa-cart-shopping text-success" : "fa-solid fa-cart-shopping"
-                        }`}
+                      className={`fs-3 fa ${isProductFavorite(product.id) ? "fa-cart-shopping text-success" : "fa-solid fa-cart-shopping"}`}
                     ></p>
                     <div className="d-flex align-items-center">
                       <Button variant="secondary" size="sm" onClick={() => handleDecrement(product.id)}>
