@@ -15,6 +15,8 @@ import Us from "./component/Us.jsx";
 import Benefits from "./component/Benefits.jsx";
 import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
+import ShoppingCart from "./component/ShoppingCart.jsx";
+import Order from "./component/Order.jsx";
 import { ProductCard } from "./component/productCard.jsx";
 
 // new components Bee Happy
@@ -45,6 +47,8 @@ const Layout = () => {
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
+            <Route element={<Order />} path="/order" />{" "}
+            <Route element={<ShoppingCart />} path="/shoppingcart" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Beeplay />} path="/beeplay" />{" "}

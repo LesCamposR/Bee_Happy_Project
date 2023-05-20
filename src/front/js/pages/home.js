@@ -5,13 +5,17 @@ import frames from "../../img/frames.jpg";
 import { Beeplay } from "../../js/component/beeplay.jsx";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import Bottle2 from "../../img/Bottle2.jpg";
+import Medium from "../../img/Medium.jpg";
+import Small from "../../img/Small.jpg";
+import { Contact } from "./contact";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <>
-      <div className="alert alert-success" role="alert">
+      <div className="alert alert-success text-center" role="alert">
         <h4 className="alert-heading m-2">Bienvenido!</h4>
         <p className="m-1">
           Estamos felices que formes parte de nuestro proyecto, Gracias por
@@ -26,7 +30,7 @@ export const Home = () => {
         </p>
       </div>
       <div className="row justify-content-center d-flex">
-        <div className="col-4 bg-light text-center ">
+        <div className="col-4 bg-light text-start ">
           <div class="alert alert-warning m-4" role="alert">
             Nutricionalmente hablando Una cucharada de miel (21 gramos) puede
             contener lo siguiente: 64 calorías. 17 gramos de azúcar, incluidas
@@ -40,7 +44,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="row justify-content-start d-flex">
-        <div className="col-6 bg-light justify-content-center mt-4 p-4">
+        <div className="col-6 bg-light text-start mt-4 p-4">
           <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -52,7 +56,7 @@ export const Home = () => {
                   aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
-                  Datos curioso
+                  Dato curioso
                 </button>
               </h2>
               <div
@@ -76,7 +80,7 @@ export const Home = () => {
                   aria-expanded="false"
                   aria-controls="panelsStayOpen-collapseTwo"
                 >
-                  Accordion Item #2
+                  Dato curioso
                 </button>
               </h2>
               <div
@@ -85,15 +89,8 @@ export const Home = () => {
                 aria-labelledby="panelsStayOpen-headingTwo"
               >
                 <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
+                  <strong>Una onza,</strong> se necesita una onza de miel para
+                  impulsar el vuelo de una abeja alrededor del mundo.
                 </div>
               </div>
             </div>
@@ -107,7 +104,7 @@ export const Home = () => {
                   aria-expanded="false"
                   aria-controls="panelsStayOpen-collapseThree"
                 >
-                  Accordion Item #3
+                  Dato curioso
                 </button>
               </h2>
               <div
@@ -116,15 +113,8 @@ export const Home = () => {
                 aria-labelledby="panelsStayOpen-headingThree"
               >
                 <div class="accordion-body">
-                  <strong>This is the third item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
+                  <strong>la Reina</strong> la reina puede poner de 600 a 800 o
+                  incluso 1500 huevos cada día durante sus 3 o 4 años de vida.
                 </div>
               </div>
             </div>
