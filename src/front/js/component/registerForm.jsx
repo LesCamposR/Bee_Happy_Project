@@ -38,7 +38,7 @@ export const RegisterForm = () => {
       phoneNumber,
       birthday,
       is_active: true,
-    });
+    });d
 
     console.log("Registration response:", response);
     console.log("Registration response JSON:", respuestaJson);
