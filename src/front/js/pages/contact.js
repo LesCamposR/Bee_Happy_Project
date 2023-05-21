@@ -1,67 +1,71 @@
 import React, { useState } from "react";
-import background from "../../img/Sunset.jpg";
-import background2 from "../../img/Green.jpg";
+import background from "../../img/Havies.jpg";
 
 export const Contact = () => {
-    const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   return (
-    <div className="container-fluid mt-5 background-image"
-    style={{ backgroundImage: `url(${background})` }} >
-      
-      <div className="row justify-content-center mt-5">
-        <h3 className="title"> Contacto </h3>
-        <div className="col-sm-4 rounded-3 m-3 p-3 border">
+    <div
+      className="container-fluid p-0"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        margin: "0",
+        padding: "0",
+        height: "100vh",
+      }}
+    >
+      <div className=" row justify-content-center p-4">
+        <div className="Contanct col-sm-4 rounded-3 mt-4 p-3">
+          <h3 className="row justify-content-center text-white title">
+            {" "}
+            Contáctanos{" "}
+          </h3>{" "}
           <form>
-            <label className="form-label fs-5">Nombre Completo</label>
+            <label className="form-label fs-5 text-white">
+              {" "}
+              Nombre Completo{" "}
+            </label>{" "}
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Enter Full Name"
+              placeholder="Ingresa tu nombre completo"
             />
-            <label className="form-label fs-5">Correo</label>
+            <label className="form-label fs-5 text-white"> Correo </label>{" "}
             <input
               type="email"
               className="form-control mb-3"
-              placeholder="Enter email"
+              placeholder="Ingresa tu correo"
             />
-            <label htmlFor="phone" className="form-label fs-5">
-              Telefono
-            </label>
+            <label htmlFor="phone" className="form-label fs-5 text-white">
+              Telefono{" "}
+            </label>{" "}
             <input
               type="text"
               className="form-control mb-3"
-              placeholder="Enter phone"
+              placeholder="Ingresa tu teléfono"
             />
-            <label htmlFor="phone" className="form-label fs-5">
-              Comentario
-            </label>
+            <label htmlFor="phone" className="form-label fs-5 text-white">
+              Comentario{" "}
+            </label>{" "}
             <textarea
               type="text-area"
               className="form-control mb-3"
-              placeholder="Enter your commit"
-            ></textarea>
+              placeholder="Ingresa tu mensaje"
+            ></textarea>{" "}
             <div className="d-flex justify-content-center">
               <button
                 type="button"
-                className="button-save col-md-6 btn btn-primary fs-6 fw-bold"
+                className="btn btn-outline-light btn-lg d mt-5"
               >
                 Enviar{" "}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <br/>
-      <p>
-        <span className="Bold">Bee Happy Office</span>
-        <br/>
-        Alajuela, Costa Rica
-        <br/>
-        Apartado Postal
-        <br/>
-        (506) 8888-8888
-      </p>
+              </button>{" "}
+            </div>{" "}
+          </form>{" "}
+        </div>{" "}
+      </div>{" "}
     </div>
   );
 };
