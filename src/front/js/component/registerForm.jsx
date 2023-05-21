@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import useFetch from "../store/flux";
@@ -17,6 +18,11 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import background from "../../img/Havies.jpg";
 
 export const Contact = () => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
   return (
@@ -63,12 +66,12 @@ export const Contact = () => {
                 type="button"
                 className="btn btn-outline-light btn-lg mt-5"
               >
-                Enviar{" "}
-              </button>{" "}
-            </div>{" "}
-          </form>{" "}
-        </div>{" "}
-      </div>{" "}
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

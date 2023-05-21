@@ -11,10 +11,7 @@ export const Login = () => {
   useEffect(() => {
     console.log(email);
   }, [email]);
-  /*useEffect(() => {
-    console.log(password);
-  }, [password]);*/
-
+  
   return (
     <div
       className="d-flex align-items-center justify-content-center vh-100"
@@ -51,7 +48,7 @@ export const Login = () => {
         <Link to="/productsList">
           <button
             type="button"
-            className="loginb btn btn-outline-light  px-5 "
+            className="loginb btn btn-outline-light  px-5 ms-1 me-1"
             onClick={(e) => {
               actions.login(email, password);
             }}
@@ -60,7 +57,7 @@ export const Login = () => {
           </button>
         </Link>
         <Link to="/">
-          <button className="btn btn-outline-light px-5">
+          <button className="btn btn-outline-light px-5 ms-1 me-1">
             Volver a inicio
           </button>
         </Link>
