@@ -19,7 +19,10 @@ export const RegisterForm = () => {
   const [gender, setGender] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  const {register, formState:{errors}} = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,12 +53,13 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div className="background-image" style={{ backgroundImage: `url(${background})` }}  >
+    <div
+      className="background-image"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="row justify-content-center mt-4">
-        <div className="register col-sm-4 rounded-3 m-5 p-3">
-          <h3 className="row justify-content-center text-white">
-            Registro de usuario
-          </h3>
+        <div className="register col-sm-8 col-md-6 col-lg-4 rounded-3 m-5 p-3">
+          <h3 className="text-center text-white">Registro de usuario</h3>
           <form
             id="registerForm"
             action="/register"
@@ -65,7 +69,7 @@ export const RegisterForm = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label className="userName form-label text-white" htmlFor="username" >
+                  <label className="form-label text-white" htmlFor="username">
                     Nombre:
                   </label>
                   <input
@@ -75,9 +79,7 @@ export const RegisterForm = () => {
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    
                   />
-                   
                 </div>
               </div>
               <div className="col-md-6">
@@ -92,9 +94,7 @@ export const RegisterForm = () => {
                     id="lastName"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    
                   />
-                  
                 </div>
               </div>
             </div>
@@ -108,8 +108,8 @@ export const RegisterForm = () => {
                 className="form-control"
                 id="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}                
-              />              
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div>
               <label className="form-label text-white" htmlFor="password">
@@ -121,9 +121,8 @@ export const RegisterForm = () => {
                 className="form-control"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}                
+                onChange={(e) => setPassword(e.target.value)}
               />
-              
             </div>
 
             <div>
@@ -185,7 +184,6 @@ export const RegisterForm = () => {
                   Registrarte
                 </button>
               )}
-              
             </div>
           </form>
         </div>
