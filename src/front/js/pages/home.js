@@ -30,6 +30,7 @@ export const Home = () => {
         </p>
       </div>
       <div className="row justify-content-center d-flex">
+<<<<<<< HEAD
         <div className="col-4 bg-light text-start ">
           <div class="alert alert-warning m-4" role="alert">
             Nutricionalmente hablando Una cucharada de miel (21 gramos) puede
@@ -37,12 +38,18 @@ export const Home = () => {
             la fructosa, la glucosa, maltosa y sucrosa. Está prácticamente libre
             de fibra, grasa o proteína. Vitaminas y minerales en cantidades
             pequeñas. Antioxidantes.
+=======
+        <div className="col-4 bg-light text-center ">
+          <div className="alert alert-warning m-4" role="alert">
+            Quieres saber que tipo de abeja eres hoy?
+>>>>>>> Developer
           </div>
         </div>
         <div className="col-8 bg-light text-center ">
           <Beeplay />
         </div>
       </div>
+<<<<<<< HEAD
       <div className="row justify-content-start d-flex">
         <div className="col-6 bg-light text-start mt-4 p-4">
           <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -121,6 +128,8 @@ export const Home = () => {
           </div>
         </div>
       </div>
+=======
+>>>>>>> Developer
       <br />
       <div className="row justify-content-center d-flex">
         <div className="col-6 bg-light text-center ">
