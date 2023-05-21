@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import useFetch from "../store/flux";
@@ -17,6 +18,8 @@ export const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  const { register, formState: { errors } } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,10 +55,8 @@ export const RegisterForm = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="row justify-content-center mt-4">
-        <div className="register col-sm-4 rounded-3 m-5 p-3">
-          <h3 className="row justify-content-center text-white">
-            Registro de usuario
-          </h3>
+        <div className="register col-sm-8 col-md-6 col-lg-4 rounded-3 m-5 p-3">
+          <h3 className="text-center text-white">Registro de usuario</h3>
           <form
             id="registerForm"
             action="/register"
@@ -65,10 +66,7 @@ export const RegisterForm = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label
-                    className="userName form-label text-white"
-                    htmlFor="username"
-                  >
+                  <label className="form-label text-white" htmlFor="username">
                     Nombre:
                   </label>
                   <input
