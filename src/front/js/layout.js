@@ -16,7 +16,6 @@ import Us from "./component/us.jsx";
 import Benefits from "./component/Benefits.jsx";
 import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
-import ShoppingCart from "./component/ShoppingCart.jsx";
 import Order from "./component/Order.jsx";
 import { ProductCard } from "./component/productCard.jsx";
 
@@ -50,7 +49,6 @@ const Layout = () => {
             <Route element={<Products />} path="/products" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
             <Route element={<Order />} path="/order" />{" "}
-            <Route element={<ShoppingCart />} path="/shoppingcart" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Beeplay />} path="/beeplay" />{" "}

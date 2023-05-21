@@ -29,77 +29,75 @@ export const Navbar = () => {
     return totalPrice;
   };
 
-
   return (
-    <nav className="navbar navbar-light navbar-expand-lg container-fluid">      
-      <div className="container w-auto"> 
-        <Link to="/" className="navbar-brand"> <img src={Logo} className="" style={{ width: "10rem" }}/></Link>
-      </div>  
-      <div className="container">  
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+    <nav className="navbar navbar-light navbar-expand-lg container-fluid">
+      <div className="container w-auto">
+        <Link to="/" className="navbar-brand">
+          {" "}
+          <img src={Logo} className="" style={{ width: "10rem" }} />
+        </Link>
+      </div>
+      <div className="container">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-menu"
+          aria-controls="navbar-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon text-muted"></span>
-        </button>  
-      
-        <div className="collapse navbar-collapse justify-content-end" id="navbar-menu">
+        </button>
+
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbar-menu"
+        >
           <ul className="navbar-nav me-2">
-              <li className="nav-item">
-                  <Link to="/" >  <span id="home" className="navbar-brand mb-0 h1">
-                      Inicio
-                    </span>
-                  </Link>
-              </li>
-              <li className="nav-item">
-                  <Link to="/productsList">
-                    <span id="products" className="navbar-brand mb-0 h1"> Productos </span>
-                  </Link>
-              </li>
-              <li className="nav-item">
-                  <Link to="/Us">
-                    <span className="navbar-brand mb-0 h1"> Conocenos </span>
-                  </Link>
-              </li>
-              <li className="nav-item">
-                  <Link to="/contact">
-                    <span className="navbar-brand mb-0 h1"> Contacto </span>
-                  </Link>
-              </li>
-              <li className="nav-item">
-                  <Link to="/registerForm">
-                    <span id="crear-cuenta" className="navbar-brand mb-0 h1"> Crear cuenta </span>
-                  </Link>
-              </li>             
-          </ul>       
-          
+            <li className="nav-item">
+              <Link to="/">
+                {" "}
+                <span id="home" className="navbar-brand mb-0 h1">
+                  Inicio
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/productsList">
+                <span id="products" className="navbar-brand mb-0 h1">
+                  {" "}
+                  Productos{" "}
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Us">
+                <span className="navbar-brand mb-0 h1"> Conocenos </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/contact">
+                <span className="navbar-brand mb-0 h1"> Contacto </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/registerForm">
+                <span id="crear-cuenta" className="navbar-brand mb-0 h1">
+                  {" "}
+                  Crear cuenta{" "}
+                </span>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
-      <div className="container w-auto">       
+      <div className="container w-auto">
         <div className="ml-auto">
           <Link to="/Login">
-<<<<<<< HEAD
-            <button className="btn border rounded-pill">
-              {" "}
-              Iniciar Sesion{" "}
-            </button>{" "}
-          </Link>{" "}
-          <Link to="/ShoppingCart">
-            <button className="btn border rounded-pill">
-              {" "}
-              <i class="fa-solid fa-cart-shopping"></i>{" "}
-              <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                <span class="visually-hidden">New alerts</span>
-              </span>
-            </button>{" "}
-          </Link>{" "}
-          <Link to="/Order">
-            <button className="btn border rounded-pill">
-              {" "}
-              <i class="fa-solid fa-shop"></i>{" "}
-            </button>{" "}
-          </Link>{" "}
-        </div>{" "}
-      </div>{" "}
-=======
-            <button className="btn btn-sm btn-light me-2 ps-3 pe-3" id="login">Iniciar Sesion</button>
+            <button className="btn btn-sm btn-light me-2 ps-3 pe-3" id="login">
+              Iniciar Sesion
+            </button>
           </Link>
         </div>
         <div className="btn-group">
@@ -142,7 +140,6 @@ export const Navbar = () => {
           </ul>
         </div>
       </div>
->>>>>>> Developer
     </nav>
   );
 };

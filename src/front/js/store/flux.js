@@ -1,23 +1,12 @@
 import { userStore, userActions } from "./user";
-<<<<<<< HEAD
-=======
-import {
-  shoppingCartStore,
-  shoppingCartActions,
-} from "../component/ShoppingCard.js";
 import { favoritesStore, favoritesActions } from "./favorites.jsx";
->>>>>>> Developer
 import { Form } from "react-bootstrap";
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       message: null,
       ...userStore,
-<<<<<<< HEAD
-=======
-      ...shoppingCartStore,
       ...favoritesStore,
->>>>>>> Developer
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -29,11 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Get Messaged");
       },
       ...userActions(getStore, getActions, setStore),
-<<<<<<< HEAD
-=======
-      ...shoppingCartActions(getStore, getActions, setStore),
       ...favoritesActions(getStore, getActions, setStore),
->>>>>>> Developer
       useFetch: async (endpoint, body, method = "POST") => {
         let url = process.env.BACKEND_URL + endpoint;
         console.log(url);
