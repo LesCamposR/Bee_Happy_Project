@@ -1,8 +1,12 @@
 .navbar {
   /*background-color: #d7e58d;*/
-  background-color: #61767b 
+  background-color: #ffc506
 }
 
 #login {
   background-color: #dde3eb;
+}
+
+a {
+  text-decoration: none;
 }

@@ -43,7 +43,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse justify-content-end" id="navbar-menu">
           <ul className="navbar-nav me-2">
               <li className="nav-item">
-                  <Link to="/">  <span id="home" className="navbar-brand mb-0 h1">
+                  <Link to="/" >  <span id="home" className="navbar-brand mb-0 h1">
                       Inicio
                     </span>
                   </Link>
@@ -71,16 +71,17 @@ export const Navbar = () => {
           </ul>       
           
         </div>
-        
+      </div>
+      <div className="container w-auto">       
         <div className="ml-auto">
           <Link to="/Login">
-            <button className="btn btn-light me-2" id="login">Iniciar Sesion</button>
+            <button className="btn btn-sm btn-light me-2 ps-3 pe-3" id="login">Iniciar Sesion</button>
           </Link>
         </div>
         <div className="btn-group">
           <a
             type="button"
-            className="btn btn-danger dropdown-toggle"
+            className="btn btn-sm btn-danger dropdown-toggle"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
