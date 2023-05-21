@@ -5,6 +5,7 @@ import Bottle from "../../img/Bottle.jpg";
 import Bottle2 from "../../img/Bottle2.jpg";
 import Medium from "../../img/Medium.jpg";
 import Small from "../../img/Small.jpg";
+import background from "../../img/frames.jpg";
 
 const products = [
   {
@@ -13,7 +14,7 @@ const products = [
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 6000,
     image: Bottle2,
-    quantity: 0
+    quantity: 0,
   },
   {
     id: 2,
@@ -21,7 +22,7 @@ const products = [
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 4500,
     image: Medium,
-    quantity: 0
+    quantity: 0,
   },
   {
     id: 3,
@@ -29,8 +30,8 @@ const products = [
     text: "100% natural, localmente producida, de gran textura, aroma y color, con una amplia diversidad nutritiva.",
     price: 3500,
     image: Small,
-    quantity: 0
-  }
+    quantity: 0,
+  },
 ];
 
 export const ProductList = () => {
@@ -77,12 +78,18 @@ export const ProductList = () => {
   return (
     <>
       <div className="h-100 bg-light">
-        <div className="row d-flex flex-wrap justify-content-center">
+        <div
+          className="row d-flex flex-wrap justify-content-center"
+          style={{ backgroundImage: `url(${background})` }}
+        >
           {products.map((product) => {
             const favorite = favorites.find((item) => item.id === product.id);
 
             return (
-              <div className="col-3 bg-light justify-content-center mt-4 p-4" key={product.id}>
+              <div
+                className="col-3 bg-light justify-content-center m-5 p-4"
+                key={product.id}
+              >
                 <Card>
                   <Card.Img variant="top" src={product.image} />
                   <Card.Body>
@@ -94,14 +101,28 @@ export const ProductList = () => {
                       role="button"
                       variant="primary"
                       onClick={() => handleLikeClick(product.id)}
-                      className={`fs-3 fa ${isProductFavorite(product.id) ? "fa-cart-shopping text-success" : "fa-solid fa-cart-shopping"}`}
+                      className={`fs-3 fa ${
+                        isProductFavorite(product.id)
+                          ? "fa-cart-shopping text-success"
+                          : "fa-solid fa-cart-shopping"
+                      }`}
                     ></p>
                     <div className="d-flex align-items-center">
-                      <Button variant="secondary" size="sm" onClick={() => handleDecrement(product.id)}>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => handleDecrement(product.id)}
+                      >
                         -
                       </Button>
-                      <div className="mx-2">{favorite ? favorite.quantity : 0}</div>
-                      <Button variant="secondary" size="sm" onClick={() => handleIncrement(product.id)}>
+                      <div className="mx-2">
+                        {favorite ? favorite.quantity : 0}
+                      </div>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => handleIncrement(product.id)}
+                      >
                         +
                       </Button>
                     </div>

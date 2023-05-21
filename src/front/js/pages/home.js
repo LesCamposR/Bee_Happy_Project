@@ -35,7 +35,6 @@ export const Home = () => {
           <Beeplay />
         </div>
       </div>
-
       <br />
       <div className="row justify-content-center d-flex">
         <div className="col-6 bg-light text-center ">
