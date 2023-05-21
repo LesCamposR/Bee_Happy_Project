@@ -1,13 +1,14 @@
-import React, {
-    useState
-} from "react";
+import React, { useState } from "react";
 import background from "../../img/Sunset.jpg";
+import background2 from "../../img/Green.jpg";
 
 export const Contact = () => {
     const [message, setMessage] = useState("");
 
   return (
-    <div className="container mt-5">
+    <div className="container-fluid mt-5 background-image"
+    style={{ backgroundImage: `url(${background})` }} >
+      
       <div className="row justify-content-center mt-5">
         <h3 className="title"> Contacto </h3>
         <div className="col-sm-4 rounded-3 m-3 p-3 border">
@@ -51,6 +52,16 @@ export const Contact = () => {
           </form>
         </div>
       </div>
+      <br/>
+      <p>
+        <span className="Bold">Bee Happy Office</span>
+        <br/>
+        Alajuela, Costa Rica
+        <br/>
+        Apartado Postal
+        <br/>
+        (506) 8888-8888
+      </p>
     </div>
   );
 };
