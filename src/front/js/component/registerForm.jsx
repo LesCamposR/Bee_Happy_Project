@@ -19,10 +19,7 @@ export const RegisterForm = () => {
   const [gender, setGender] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
+  const { register, formState: { errors } } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
