@@ -74,7 +74,7 @@ export const Navbar = () => {
         
         <div className="ml-auto">
           <Link to="/Login">
-            <button className="btn border rounded-pill">Iniciar Sesion</button>
+            <button className="btn btn-light me-2" id="login">Iniciar Sesion</button>
           </Link>
         </div>
         <div className="btn-group">

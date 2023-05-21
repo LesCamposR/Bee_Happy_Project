@@ -1,7 +1,8 @@
-navbar {
-  background-color: #d7e58d;
+.navbar {
+  /*background-color: #d7e58d;*/
+  background-color: #61767b 
 }
 
-btn {
-  background-color: #fb8700;
+#login {
+  background-color: #dde3eb;
 }
