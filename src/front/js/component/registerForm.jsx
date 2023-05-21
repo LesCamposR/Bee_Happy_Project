@@ -52,10 +52,8 @@ export const RegisterForm = () => {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div className="row justify-content-center mt-4">
-        <div className="register col-sm-4 rounded-3 m-5 p-3">
-          <h3 className="row justify-content-center text-white">
-            Registro de usuario
-          </h3>
+        <div className="register col-sm-8 col-md-6 col-lg-4 rounded-3 m-5 p-3">
+          <h3 className="text-center text-white">Registro de usuario</h3>
           <form
             id="registerForm"
             action="/register"
@@ -65,10 +63,7 @@ export const RegisterForm = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label
-                    className="userName form-label text-white"
-                    htmlFor="username"
-                  >
+                  <label className="form-label text-white" htmlFor="username">
                     Nombre:
                   </label>
                   <input
