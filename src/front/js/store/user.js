@@ -23,7 +23,7 @@ export function userActions(getStore, getActions, setStore) {
         obj,
         "POST"
       );
-      // console.log(respuestaJson);
+      //console.log(respuestaJson);
       console.log(response.ok);
 
       if (response.ok) {
@@ -35,8 +35,9 @@ export function userActions(getStore, getActions, setStore) {
         //console.log("token", token)
       } else {
         console.log("login fallido");
-        localStorage.setItem("token", "");
-        sessionStorage.setItem("token", "");
+        localStorage.setItem("token", respuestaJson.token);
+        sessionStorage.setItem("token", respuestaJson.token);
+        let toke = localStorage.getItem("token");
         setStore({ ...store, userLogin: false });
       }
 
@@ -54,9 +55,10 @@ export function userActions(getStore, getActions, setStore) {
       let store = getStore();
       let { respuestaJson, response } = await actions.useFetch("/logout");
       if (response.ok) {
-        localStorage.setItem("token", "");
-        sessionStorage.setItem("token", "");
+        localStorage.setItem("token", respuestaJson.token);
+        sessionStorage.setItem("token", respuestaJson.token);
         setStore({ ...store, userLogin: false });
+        console.log("token", token);
       }
     },
   };
