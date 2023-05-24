@@ -9,6 +9,7 @@ import Bottle2 from "../../img/Bottle2.jpg";
 import Medium from "../../img/Medium.jpg";
 import Small from "../../img/Small.jpg";
 import { Contact } from "./contact";
+import Info from "../../js/component/Info.jsx";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -16,7 +17,9 @@ export const Home = () => {
   return (
     <>
       <div className="alert alert-success text-center" role="alert">
-        <h4 className="alert-heading m-2">Bienvenido!</h4>
+        <h4 className="alert-heading m-2">
+          Bienvenido! <Info />{" "}
+        </h4>
         <p className="m-1">
           Estamos felices que formes parte de nuestro proyecto, Gracias por
           adquirir nuestros productos. Esperamos que tu experiencia con nosotros

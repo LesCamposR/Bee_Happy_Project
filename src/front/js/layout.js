@@ -18,6 +18,7 @@ import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
 import Order from "./component/Order.jsx";
 import { ProductCard } from "./component/productCard.jsx";
+import Info from "./component/Info.jsx";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
@@ -53,6 +54,7 @@ const Layout = () => {
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Beeplay />} path="/beeplay" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
+            <Route element={<Info />} path="/info" />
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}

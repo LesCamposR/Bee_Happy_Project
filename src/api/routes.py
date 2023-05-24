@@ -233,7 +233,7 @@ def login():
 # Logout*************************
 
 
-@api.route("/logout", methods=["POST"])
+@api.route("/logout", methods=["GET"])
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)

@@ -19,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       ...userActions(getStore, getActions, setStore),
       ...favoritesActions(getStore, getActions, setStore),
-      useFetch: async (endpoint, body, method = "POST") => {
+      useFetch: async (endpoint, body, method = "GET") => {
         let url = process.env.BACKEND_URL + endpoint;
         console.log(url);
         let response = await fetch(url, {

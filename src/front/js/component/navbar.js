@@ -106,7 +106,7 @@ export const Navbar = () => {
               className="btn btn-sm btn-light me-2 ps-3 pe-3"
               id="logout"
               onClick={(e) => {
-                actions.logout;
+                actions.logout();
               }}
             >
               Logout
