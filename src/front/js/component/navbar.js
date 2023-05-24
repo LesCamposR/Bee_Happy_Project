@@ -100,6 +100,21 @@ export const Navbar = () => {
             </button>
           </Link>
         </div>
+        <div className="ml-auto">
+          {store.userLogin ? (
+            <button
+              className="btn btn-sm btn-light me-2 ps-3 pe-3"
+              id="logout"
+              onClick={(e) => {
+                actions.logout;
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <></>
+          )}
+        </div>
         <div className="btn-group">
           <a
             type="button"

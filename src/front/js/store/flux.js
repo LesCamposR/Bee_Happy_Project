@@ -26,6 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: method,
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
           body: body ? JSON.stringify(body) : null,
         });
