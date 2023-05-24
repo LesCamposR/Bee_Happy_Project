@@ -44,5 +44,9 @@ export function favoritesActions(getStore, getActions, setStore) {
             setStore({ ...store, favorites: arrTemp });
             return true;
         },
+        clearFavorites: async () => {
+            setStore({ favorites: [] }); // Vacía el arreglo de favoritos en el estado centralizado
+            return true;
+        },
     };
 }

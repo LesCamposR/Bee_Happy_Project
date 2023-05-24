@@ -94,6 +94,17 @@ export const Navbar = () => {
                   );
                 })}
                 <li>Total: ${getTotalPrice()}</li>
+                <li>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      alert("¡Compra realizada!");
+                      actions.clearFavorites();
+                    }}
+                  >
+                    Comprar
+                  </button>
+                </li>
               </>
             ) : (
               <></>
