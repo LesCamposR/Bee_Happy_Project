@@ -18,10 +18,6 @@ import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
 import { ProductCard } from "./component/productCard.jsx";
 
-// new components Bee Happy
-// import RegisterUser from "./component/registerUser.jsx";
-// import Contact from "./pages/contact.js";
-
 // create your first component
 const Layout = () => {
   // the basename is used when your project is published in a subdirectory and not in the root of the domain
