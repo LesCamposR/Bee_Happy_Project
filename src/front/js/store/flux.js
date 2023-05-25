@@ -1,8 +1,4 @@
 import { userStore, userActions } from "./user";
-import {
-  shoppingCartStore,
-  shoppingCartActions,
-} from "../component/ShoppingCard.js";
 import { favoritesStore, favoritesActions } from "./favorites.jsx";
 import { Form } from "react-bootstrap";
 const getState = ({ getStore, getActions, setStore }) => {
@@ -10,7 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       message: null,
       ...userStore,
-      ...shoppingCartStore,
       ...favoritesStore,
     },
     actions: {
@@ -23,15 +18,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log("Get Messaged");
       },
       ...userActions(getStore, getActions, setStore),
-      ...shoppingCartActions(getStore, getActions, setStore),
       ...favoritesActions(getStore, getActions, setStore),
-      useFetch: async (endpoint, body, method = "POST") => {
+      useFetch: async (endpoint, body, method = "GET") => {
         let url = process.env.BACKEND_URL + endpoint;
         console.log(url);
         let response = await fetch(url, {
           method: method,
           headers: {
             "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
           body: body ? JSON.stringify(body) : null,
         });

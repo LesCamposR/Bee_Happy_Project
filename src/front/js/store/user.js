@@ -4,7 +4,7 @@ export const userStore = {
     msg: "I'm an object",
   },
   user: "",
-  userLogin: false
+  userLogin: false,
 };
 
 export function userActions(getStore, getActions, setStore) {
@@ -23,22 +23,23 @@ export function userActions(getStore, getActions, setStore) {
         obj,
         "POST"
       );
-     // console.log(respuestaJson);
+      //console.log(respuestaJson);
       console.log(response.ok);
 
       if (response.ok) {
-        localStorage.setItem("token", respuestaJson.token)
-        sessionStorage.setItem("token", respuestaJson.token)
-        let token = localStorage.getItem("token")
-        setStore({ ...store, userLogin: true })
-        console.log("Login is: True ")
+        localStorage.setItem("token", respuestaJson.token);
+        sessionStorage.setItem("token", respuestaJson.token);
+        let token = localStorage.getItem("token");
+        setStore({ ...store, userLogin: true });
+        console.log("Login is: True ");
         //console.log("token", token)
-    } else {
-        console.log("login fallido")
-        localStorage.setItem("token", "")
-        sessionStorage.setItem("token", "")
-        setStore({ ...store, userLogin: false })
-    }
+      } else {
+        console.log("login fallido");
+        localStorage.setItem("token", respuestaJson.token);
+        sessionStorage.setItem("token", respuestaJson.token);
+        let toke = localStorage.getItem("token");
+        setStore({ ...store, userLogin: false });
+      }
 
       /*setStore({
         ...store,
@@ -48,6 +49,17 @@ export function userActions(getStore, getActions, setStore) {
       });*/
 
       return store.user;
+    },
+    logout: async () => {
+      let actions = getActions();
+      let store = getStore();
+      let { respuestaJson, response } = await actions.useFetch("/logout");
+      if (response.ok) {
+        localStorage.setItem("token");
+        sessionStorage.setItem("token");
+        setStore({ ...store, userLogin: false });
+        console.log("token", token);
+      }
     },
   };
 }
