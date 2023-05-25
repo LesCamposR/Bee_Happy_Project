@@ -273,7 +273,6 @@ def get_specific_product(id):
     product = product.query.get(id)    
   
     return jsonify(product.serialize()), 200
-
     
 
 @api.route('/post-product', methods=['POST'])
@@ -292,7 +291,6 @@ def post_specific_product():
     if "name" not in body:
         raise APIException("You need to specify the name", status_code=404)
     
-
   
     newproduct = Product(name=name, price=price, stock=stock, rating=rating, reviews=reviews, description=description )
 

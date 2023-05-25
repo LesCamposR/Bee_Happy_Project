@@ -19,7 +19,10 @@ export const RegisterForm = () => {
   const [gender, setGender] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  const { register, formState: { errors } } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,15 +36,19 @@ export const RegisterForm = () => {
     const birthday = formData.get("birthday");
     const gender = formData.get("gender");
 
-    let { respuestaJson, response } = await actions.useFetch("/api/register", {
-      name,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-      birthday,
-      is_active: true,
-    });
+    let { respuestaJson, response } = await actions.useFetch(
+      "/api/register",
+      {
+        name,
+        lastName,
+        email,
+        password,
+        phoneNumber,
+        birthday,
+        is_active: true,
+      },
+      "POST"
+    );
 
     console.log("Registration response:", response);
     console.log("Registration response JSON:", respuestaJson);
