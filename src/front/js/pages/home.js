@@ -18,7 +18,7 @@ export const Home = () => {
     <>
       <div className="alert alert-success text-center" role="alert">
         <h4 className="alert-heading m-2">
-          Bienvenido! <Info />{" "}
+          Bienvenido! 
         </h4>
         <p className="m-1">
           Estamos felices que formes parte de nuestro proyecto, Gracias por
