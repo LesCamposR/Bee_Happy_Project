@@ -6,16 +6,19 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-import { Login } from "./component/Login.jsx";
+import { Login } from "./component/login.jsx";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { RegisterForm } from "./component/registerForm.jsx";
 import { ProductList } from "./component/productsList.jsx";
-import Us from "./component/Us.jsx";
+import { Products } from "./component/products.jsx";
+import Us from "./component/us.jsx";
 import Benefits from "./component/Benefits.jsx";
 import { Beeplay } from "./component/beeplay.jsx";
 import { Contact } from "./pages/contact";
+import Order from "./component/Order.jsx";
 import { ProductCard } from "./component/productCard.jsx";
+import Info from "./component/Info.jsx";
 
 // new components Bee Happy
 // import RegisterUser from "./component/registerUser.jsx";
@@ -44,11 +47,14 @@ const Layout = () => {
             <Route element={<ProductCard />} path="/productsCard" />{" "}
             <Route element={<Login />} path="/Login" />{" "}
             <Route element={<ProductCard />} path="/productCard" />{" "}
+            <Route element={<Products />} path="/products" />{" "}
             <Route element={<Us />} path="/Us" />{" "}
+            <Route element={<Order />} path="/order" />{" "}
             <Route element={<Benefits />} path="/benefits" />{" "}
             <Route element={<Contact />} path="/contact" />{" "}
             <Route element={<Beeplay />} path="/beeplay" />{" "}
             <Route element={<Single />} path="/single/:theid" />{" "}
+            <Route element={<Info />} path="/info" />
             <Route element={<h1> Not found! </h1>} />{" "}
           </Routes>{" "}
           <Footer />{" "}

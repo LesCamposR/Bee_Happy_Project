@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import useFetch from "../store/flux";
 import "../../styles/home.css";
+import background from "../../img/Green.jpg";
 
 export const RegisterForm = () => {
   const { store, actions } = useContext(Context);
@@ -15,6 +17,9 @@ export const RegisterForm = () => {
   const [birthday, setBirthday] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  const { register, formState: { errors } } = useForm();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,13 +45,18 @@ export const RegisterForm = () => {
 
     console.log("Registration response:", response);
     console.log("Registration response JSON:", respuestaJson);
+
+    setRegistrationSuccess(true);
   };
 
   return (
-    <div className="background-image">
+    <div
+      className="background-image"
+      style={{ backgroundImage: `url(${background})` }}
+    >
       <div className="row justify-content-center mt-4">
-        <div className="register col-sm-4 rounded-3 m-5 p-3">
-          <h3 className="row justify-content-center">Registration Form</h3>
+        <div className="register col-sm-8 col-md-6 col-lg-4 rounded-3 m-5 p-3">
+          <h3 className="text-center text-white">Registro de usuario</h3>
           <form
             id="registerForm"
             action="/register"
@@ -56,8 +66,8 @@ export const RegisterForm = () => {
             <div className="row mb-3">
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label className="userName form-label" htmlFor="username">
-                    Username:
+                  <label className="form-label text-white" htmlFor="username">
+                    Nombre:
                   </label>
                   <input
                     name="username"
@@ -71,8 +81,8 @@ export const RegisterForm = () => {
               </div>
               <div className="col-md-6">
                 <div className="form-outline">
-                  <label className="form-label" htmlFor="lastName">
-                    Last Name:
+                  <label className="form-label text-white" htmlFor="lastName">
+                    Apellido:
                   </label>
                   <input
                     name="lastName"
@@ -86,8 +96,8 @@ export const RegisterForm = () => {
               </div>
             </div>
             <div>
-              <label className="form-label" htmlFor="email">
-                Email:
+              <label className="form-label text-white" htmlFor="email">
+                Correo:
               </label>
               <input
                 name="email"
@@ -99,8 +109,8 @@ export const RegisterForm = () => {
               />
             </div>
             <div>
-              <label className="form-label" htmlFor="password">
-                Password:
+              <label className="form-label text-white" htmlFor="password">
+                Contraseña:
               </label>
               <input
                 name="password"
@@ -113,8 +123,8 @@ export const RegisterForm = () => {
             </div>
 
             <div>
-              <label className="form-label" htmlFor="phoneNumber">
-                Phone Number:
+              <label className="form-label text-white" htmlFor="phoneNumber">
+                Teléfono:
               </label>
               <input
                 name="phoneNumber"
@@ -128,8 +138,8 @@ export const RegisterForm = () => {
 
             <div className="form-group row mb-3">
               <div className="col-sm-6">
-                <label htmlFor="birthday" className="form-label">
-                  Birthday
+                <label htmlFor="birthday" className="form-label text-white">
+                  Fecha de nacimiento:
                 </label>
                 <input
                   name="birthday"
@@ -141,8 +151,8 @@ export const RegisterForm = () => {
                 />
               </div>
               <div className="col-sm-6">
-                <label htmlFor="gender" className="form-label">
-                  Gender
+                <label htmlFor="gender" className="form-label text-white">
+                  Género:
                 </label>
                 <select
                   name="gender"
@@ -151,20 +161,26 @@ export const RegisterForm = () => {
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
-                  <option value="">Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="">Seleccciona</option>
+                  <option value="male">Hombre</option>
+                  <option value="female">Mujer</option>
+                  <option value="other">Otro</option>
                 </select>
               </div>
             </div>
             <div className="d-grid gap-2 col-6 mx-auto">
-              <button
-                type="submit"
-                className="btn btn-outline-dark btn-lg mt-5"
-              >
-                Register
-              </button>
+              {registrationSuccess ? (
+                <Link to="/Login" className="btn btn-success btn-lg mt-5">
+                  Ir a Login
+                </Link>
+              ) : (
+                <button
+                  type="submit"
+                  className="btn btn-outline-light btn-lg mt-5"
+                >
+                  Registrarte
+                </button>
+              )}
             </div>
           </form>
         </div>

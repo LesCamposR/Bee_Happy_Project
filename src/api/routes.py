@@ -14,7 +14,7 @@ from api.utils import generate_sitemap, APIException
 
 from api.extensions import jwt, bcrypt
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, get_jwt
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from datetime import datetime, timezone, time
@@ -140,7 +140,7 @@ def register_user():
     #datetim="1980-12-24"
     datetim= datetime.now(timezone.utc)
     #creada la clase User en la variable new_user
-    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active, lastname=lastname, phonenumber=phonenumber, birthdate=datetim,address="null",country="null",last_login=datetim,email_recover="null",securityQA1="null",securityQA2="null",user_creation_date=datetim,role="null", status="active")
+    new_user = User(email=email, name=name, password=password_encrypted, is_active=is_active, lastname=lastname, phonenumber=phonenumber, birthdate=birthdate, address="null",country="null",last_login=datetim,email_recover="null",securityQA1="null",securityQA2="null",user_creation_date=datetim,role="null", status="active")
 
     #comitear la sesión
     db.session.add(new_user) #agregamos el nuevo usuario a la base de datos
@@ -233,7 +233,7 @@ def login():
 # Logout*************************
 
 
-@api.route("/logout", methods=["POST"])
+@api.route("/logout", methods=["GET"])
 @jwt_required()
 def logout():
     jti = get_jwt()["jti"] #Identificador del JWT (es más corto)

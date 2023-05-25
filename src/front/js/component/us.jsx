@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import beach from "../../img/beach.jpg"
 import Sunset from "../../img/Sunset.jpg"
 
 const Us = () => {
 
     return (<>
-
-
+    
         <div className="row justify-content-start">
             <div className="col-6 bg-light d-flex justify-content-center mt-4 p-4">
                 <div className="card bg-dark text-white">
