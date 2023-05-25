@@ -34,7 +34,7 @@ export const Beeplay = () => {
 
     return (
         <div>
-            <button onClick={generateRandomMsg}>GET A MSG</button>
+            <button className="btn btn-warning" onClick={generateRandomMsg}>TRY ME</button>
             <p>{randomMsg}</p>
             {randomImage && (
                 <img
