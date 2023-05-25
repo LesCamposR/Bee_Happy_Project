@@ -55,8 +55,8 @@ export function userActions(getStore, getActions, setStore) {
       let store = getStore();
       let { respuestaJson, response } = await actions.useFetch("/logout");
       if (response.ok) {
-        localStorage.setItem("token", respuestaJson.token);
-        sessionStorage.setItem("token", respuestaJson.token);
+        localStorage.setItem("token");
+        sessionStorage.setItem("token");
         setStore({ ...store, userLogin: false });
         console.log("token", token);
       }
