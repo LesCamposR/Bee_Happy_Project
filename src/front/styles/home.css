@@ -7,22 +7,22 @@
 */
 
 .register {
-    font-family: "Assistant", sans-serif;
-    border: solid 1px rgba(255, 255, 255, 0.5);
-    width: 50%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(20px);
+  font-family: "Assistant", sans-serif;
+  border: solid 1px rgba(255, 255, 255, 0.5);
+  width: 50%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
 }
 
 .Contanct {
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(20px);
-    border: solid 1px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  border: solid 1px rgba(255, 255, 255, 0.5);
 }
 
 .Login {
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(20px);
-    border: solid 1px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  border: solid 1px rgba(255, 255, 255, 0.5);
 }

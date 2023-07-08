@@ -127,6 +127,7 @@ def register_user():
     lastname = body ["lastName"]
     phonenumber = body ["phoneNumber"]
     birthdate = body["birthday"]
+    gender = gender ["gender"]
     is_active = body["is_active"]
    
 

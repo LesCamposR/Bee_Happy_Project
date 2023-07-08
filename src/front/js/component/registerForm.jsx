@@ -40,6 +40,7 @@ export const RegisterForm = () => {
       password,
       phoneNumber,
       birthday,
+      gender,
       is_active: true,
     });
 
